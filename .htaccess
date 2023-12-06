@@ -1,0 +1,10 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Rewrite /login to /?p=login internally
+  RewriteRule ^login$ /?p=login [L,QSA]
+
+  # Add other rules as needed
+
+</IfModule>

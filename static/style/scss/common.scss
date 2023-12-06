@@ -1,0 +1,151 @@
+body {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: $font;
+  background: #1f1f25;
+  color: white;
+}
+.page-size {
+  max-width: 1280px;
+  margin: auto;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  padding: 0;
+  margin: 0;
+}
+button,
+a,
+input,
+select,
+textarea {
+  transition: all 400ms ease-in-out;
+  outline: unset;
+  font-family: inherit;
+}
+
+* {
+  ::-webkit-scrollbar {
+    width: 5px;
+    background: var(--bg-color);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    width: 100%;
+    background-color: #4b3fff;
+  }
+  transition: background 300ms linear;
+}
+#main-container {
+  display: grid;
+  grid-template-areas: "header" "main" "footer";
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
+}
+.wire {
+  width: 100%;
+  height: 1px;
+  background: var(--wire-color);
+}
+
+header {
+  grid-area: header;
+}
+
+main {
+  grid-area: main;
+  min-height: 100%;
+  width: 100%;
+}
+
+footer {
+  grid-area: footer;
+}
+.fade-out{
+  animation: fadeOut 400ms ease-in 1 forwards;
+  opacity: 1;
+
+  @keyframes fadeOut {
+    0% {
+      opacity: 1;
+    }
+
+    100% {
+      opacity: 0;
+    }
+  }
+}
+.fade-in {
+  animation: fadeIn 400ms ease-in 1 forwards;
+  opacity: 0;
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
+}
+.slide-in {
+  animation: slideIn 200ms ease-in 1 forwards;
+  transform: translateY(30px);
+
+  @keyframes slideIn {
+    0% {
+      transform: translateY(30px);
+    }
+
+    100% {
+      transform: translateY(0px);
+    }
+  }
+}
+
+button,
+a,
+input[type="radio"],
+select,
+input[type="file"] {
+  cursor: pointer;
+}
+footer{
+  text-align: center;
+  background: $bg-color;
+  padding: 20px;
+  width: 100%;
+}
+.lower-message{
+  font-size: 14px !important;
+  margin: 2px 0 !important;
+  & a{
+    display: inline !important;
+    margin: 0;
+    color: orangered;
+  }
+
+}
+.message{
+  font-size: 14px;
+  display: block;
+  width: max-content;
+  padding: 3px 10px;
+  border-radius: 4px;
+  font-weight: 500;
+  margin: 7px 0;
+  background: rgb(168 255 168);
+  color: black;
+  &.alert{
+    background: #ffd146;
+  }
+  &.danger{
+   background:  #ff7373;
+  }
+}

@@ -1,0 +1,40 @@
+.df{
+    display: flex;
+}
+.df-c{
+    align-items: center;
+    justify-content: center;
+}
+.df-ac{
+    align-items: center;
+}
+.df-jc{
+    justify-content: center;
+}
+.df-dr{
+    flex-direction: row;
+}
+.df-dc{
+    flex-direction: column;
+}
+.btn{
+    max-width: max-content;
+    padding: 14px 43px;
+    border-radius: 27px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: 300ms;
+    border: 1px solid white;
+}
+.white-bg{
+    background: white
+}
+.black-color{
+    color: black;
+}
+.btn.white-bg.black-color{
+    &:hover{
+        color: white;
+        background-color: black;
+    }
+}

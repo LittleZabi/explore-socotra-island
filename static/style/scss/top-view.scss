@@ -1,0 +1,118 @@
+#top-view {
+  position: relative;
+  & .buttons {
+    position: absolute;
+    z-index: 2;
+    height: 100%;
+    width: 100%;
+    & .slide-button {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 40px;
+      height: 40px;
+      margin: auto;
+      background: rgba(255, 255, 255, 0.738);
+      border-radius: 3px;
+      border:none;
+      &:hover{
+        background: white;
+      }
+      & svg{
+        width: 20px;
+        color: black;
+      }
+      &.next-slide{
+        right: 0;
+        margin-right: 10px;
+      }
+      &.prev-slide{
+        margin-left: 10px;
+        left: 0;
+      }
+    }
+
+  }
+  & .top-view-wrapper {
+    margin: auto;
+    width: 100%;
+    height: 600px;
+    position: relative;
+    overflow: hidden;
+
+    & .top-view-slide {
+      display: none;
+      width: 100%;
+      margin: auto;
+
+      &:nth-child(1) {
+        display: block;
+      }
+      &.fade-in {
+        & img {
+          animation: zoom 4s linear forwards 1;
+          @keyframes zoom {
+            0% {
+              transform: scale(1);
+            }
+            100% {
+              transform: scale(1.2);
+            }
+          }
+        }
+      }
+    }
+    & .image {
+      width: 100%;
+      & .top-layer {
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          to right,
+          rgba(0, 0, 0, 0.5),
+          rgba(0, 0, 0, 0.52),
+          rgba(0, 0, 0, 0)
+        );
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+      }
+      & img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+    & .top-view-text {
+      position: absolute;
+      top: 0;
+      z-index: 1;
+      margin: auto;
+      width: 100%;
+      left: 0;
+      right: 0;
+      & h1 {
+        font-family: $sec-font;
+        font-size: 96px;
+        color: white;
+        margin-top: 212px;
+        margin-left: 108px;
+      }
+    }
+    & p {
+      font-family: $font;
+      margin-top: 20px;
+      margin-left: 108px;
+      width: 703px;
+      font-size: 20px;
+    }
+    & a {
+      margin-left: 108px;
+      margin-top: 30px;
+      font-size: 18px;
+      font-weight: 600;
+    }
+  }
+}

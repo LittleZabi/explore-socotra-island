@@ -1,0 +1,73 @@
+@font-face {
+  font-family: barlow_cond;
+  font-style: normal;
+  font-weight: 100;
+  font-display: swap;
+  src: 
+    url("../fonts/barlow_condensed/BarlowCondensed-Thin.woff2") format("woff2"),
+    url("../fonts/barlow_condensed/BarlowCondensed-Thin.ttf") format("tff");
+}
+@font-face {
+  font-family: barlow_cond;
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: 
+    url("../fonts/barlow_condensed/BarlowCondensed-Light.woff2") format("woff2"),
+    url("../fonts/barlow_condensed/BarlowCondensed-Light.ttf") format("tff");
+}
+@font-face {
+  font-family: "barlow_cond";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: 
+    url("../fonts/barlow_condensed/BarlowCondensed-Regular.woff2") format("woff2"),
+    url("../fonts/barlow_condensed/BarlowCondensed-Regular.ttf") format("tff");
+}
+@font-face {
+  font-family: barlow_cond;
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: 
+    url("../fonts/barlow_condensed/BarlowCondensed-Medium.woff2") format("woff2"),
+    url("../fonts/barlow_condensed/BarlowCondensed-Medium.tff") format("ttf");
+}
+@font-face {
+  font-family: barlow_cond;
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: 
+    url("../fonts/barlow_condensed/BarlowCondensed-SemiBold.woff2") format("woff2"),
+    url("../fonts/barlow_condensed/BarlowCondensed-SemiBold.ttf") format("tff");
+}
+@font-face {
+  font-family: barlow_cond;
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: 
+    url("../fonts/barlow_condensed/BarlowCondensed-Bold.woff2") format("woff2"),
+    url("../fonts/barlow_condensed/BarlowCondensed-Bold.tff") format("ttf");
+}
+@font-face {
+  font-family: barlow_cond;
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: 
+    url("/static/style/fonts/barlow_condensed/BarlowCondensed-Black.woff2") format("woff2"),
+    url("/static/style/fonts/barlow_condensed/BarlowCondensed-Black.tff") format("ttf");
+}
+@font-face {
+  font-family: 'berlin';
+  font-weight: 900;
+  font-display: swap;
+  src: 
+    url("../fonts/berlin-demi.woff") format("woff"),
+    url("../fonts/berlin-demi.ttf") format("ttf");
+}
+$font: 'barlow_cond';
+$sec-font: 'berlin';

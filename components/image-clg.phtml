@@ -1,0 +1,65 @@
+<div class="page-wrapper">
+	<div class="top-image-view page-size">
+		<div class="qoute-wrap">
+			<div class="qoute q1">
+				Explore the mystical allure of Socotra, an untouched paradise in the Indian Ocean, where ancient landscapes and vibrant cultures converge.
+			</div>
+			<div class="qoute">
+				Dive into a world of biodiversity as Socotra reveals its ecological wonders — from the iconic Dragon's Blood Trees to endemic species found nowhere else on Earth.
+			</div>
+			<div class="qoute q2">
+				Immerse yourself in the rich tapestry of Socotra's traditions, where time-honored customs and warm hospitality create an unforgettable cultural experience.
+			</div>
+			<?php if ($image_gallery_text_or_login_modal_toggler != 'login') { ?>
+				<div class="qoute q3">
+					Plan your Socotra adventure with confidence. From visa information to curated experiences, let Explore Socotra co. be your guide to an enchanting exploration.
+				</div>
+			<?php } ?>
+			<div class="qoute q4">
+				Socotra beckons the intrepid traveler — a sanctuary where landscapes unfold like dreams, and every step is a discovery of nature's masterpieces.
+			</div>
+			<div class="qoute q6">
+				Socotra is not just an island; it's an extraordinary narrative waiting to be explored. From the mystical Dixam Plateau to the sunsets over the Arabian Sea, every moment is a brushstroke on this canvas of wonder.
+			</div>
+			<div>
+				<div class="gallery">
+					<div class="images">
+						<img src="/static/media/socotra-gallery/image-5-min.jpg" alt="picaso 2" />
+						<img src="/static/media/socotra-gallery/image-16.jpg" alt="picaso 2" />
+						<img src="/static/media/socotra-gallery/image-12-min.jpg" alt="picaso 3" />
+					</div>
+					<div class="images">
+						<img src="/static/media/socotra-gallery/image-10-min.jpg" alt="picaso 4" />
+						<img src="/static/media/socotra-gallery/image-8-min.jpg" alt="picaso 5" />
+					</div>
+					<div class="images">
+						<img src="/static/media/socotra-gallery/image-11-min.jpg" alt="picaso 6" />
+						<img src="/static/media/socotra-gallery/image-6-min.jpg" alt="picaso 6" />
+					</div>
+					<div class="images">
+						<img src="/static/media/socotra-gallery/image-4-min.jpg" alt="picaso 6" />
+						<img src="/static/media/socotra-gallery/image-9-min.jpg" alt="picaso 6" />
+						<img src="/static/media/socotra-gallery/image-2-min.jpg" alt="picaso 6" />
+						<img src="/static/media/socotra-gallery/image-7-min.jpg" alt="picaso 6" />
+					</div>
+				</div>
+				<div class="text-view">
+					<?php if ($image_gallery_text_or_login_modal_toggler == 'login') {
+						include_once('./components/login-form.phtml');
+					} else {
+					?>
+						<div class="Observe" data-onview="fade-in" data-onout='fade-out'>
+							<h1>Welcome to Explore Socotra co.
+							</h1>
+							<p>
+								Greetings, fellow adventurers! Step into a realm where the echoes of ancient tales mingle with the whispers of the wind, and the landscapes unfold like pages of a surreal storybook. Welcome to Explore Socotra co., your gateway to the mesmerizing tapestry of Socotra Island.
+							</p>
+							<a href="/" class="btn white-bg black-color">GET VISA NOW</a>
+						</div>
+					<?php } ?>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="/static/js/socotra-gallery.js"></script>
