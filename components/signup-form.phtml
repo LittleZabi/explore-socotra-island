@@ -1,0 +1,51 @@
+<div class="form-modal">
+    <div class="in-modal">
+        <div class="form">
+            <form autocomplete="on" id="signup-form">
+                <h2>USER SINGUP</h2>
+                <p>
+                    Embark on a journey of discovery with Explore Socotra! Sign up now to unlock exclusive access to uncharted wonders, unique experiences, and the beauty of this captivating island. Join our community of explorers, and let the magic of Socotra unfold at your fingertips. Your adventure starts here! </p>
+                <div class="flex-yxz">
+                    <div class="a03x full-w">
+                        <label for="username">Enter your Full name</label>
+                        <input type="text" id="fullname" name="fullname" placeholder="E.g. John Doe" />
+                    </div>
+                </div>
+                <div class="flex-yxz">
+                    <div class="a03x full-w">
+                        <label for="email">Enter your email address</label>
+                        <input type="text" id="email" name="email" placeholder="E.g. xyz123@abc.com" />
+                    </div>
+                </div>
+                <div class="flex-yxz">
+                    <div class="a03x full-w img-plc">
+                        <label for="avatar">Select your profile avatar <small>(optional)</small></label>
+                        <input type="file" accept=".png, .jpg, .jpeg" onchange="handleImage(this)" id="avatar" name="avatar" />
+                        <div class="image-placeholder" onclick="handleImgPlaceholder()" id="file-placeholder">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                            <span>click to select image</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex-yxz">
+                    <div class="a03x">
+                        <label for="password">Enter your password</label>
+                        <input type="password" name="password" id="password" placeholder="Enter password" />
+                    </div>
+                    <div class="a03x">
+                        <label for="password">Retype-password</label>
+                        <input type="password" name="re-password" id="re-password" placeholder="Enter password again" />
+                    </div>
+                </div>
+                <input type="hidden" value="<?php echo ROOT_PATH; ?>" name="root_path" />
+                <div class="flex" style="flex-direction: column;">
+                    <button type="button" onclick="submitSignUp()" class="login-btn btn">Sign In</button>
+                    <span id="alert-text"></span>
+                </div>
+                <p class="lower-message">You have account? <a href='/?p=login'>sign in.</a></p>
+            </form>
+        </div>
+    </div>
+</div>

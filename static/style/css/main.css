@@ -113,6 +113,7 @@
   backdrop-filter: blur(18px);
   padding: 25px;
   margin: 0 24px 0 140px;
+  z-index: 2;
 }
 .top-image-view .text-view h1 {
   font-size: 65px;
@@ -469,20 +470,6 @@
 .form .flex-yxz .a03x.a03x-1 input[type=checkbox] {
   margin-right: 16px;
 }
-.form .flex-yxz.spec-items {
-  margin-bottom: 35px;
-  position: relative;
-}
-.form .flex-yxz.spec-items label {
-  text-transform: uppercase;
-}
-.form .flex-yxz.spec-items .a03x {
-  width: 31%;
-}
-.form .flex-yxz.number-sec .a03x {
-  width: 173px;
-  margin-right: 43px;
-}
 .form input[type=submit],
 .form button.btn {
   width: 278px;
@@ -518,6 +505,40 @@
 
 .danger-border {
   border-color: rgb(var(--color-danger)) !important;
+}
+
+.img-plc input {
+  display: none;
+}
+
+.image-placeholder {
+  background: #14121e;
+  width: 180px;
+  padding: 10px;
+  margin: 10px 0px;
+  text-align: center;
+  border-radius: 5px;
+  border: 1px solid rgb(56, 56, 56);
+  cursor: pointer;
+}
+.image-placeholder svg {
+  width: 80px;
+  height: 80px;
+  opacity: 0.8;
+}
+.image-placeholder span {
+  display: block;
+  font-size: 12px;
+}
+.image-placeholder img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+#alert-text {
+  display: none;
 }
 
 body {
@@ -664,6 +685,7 @@ footer {
   padding: 3px 10px;
   border-radius: 4px;
   font-weight: 500;
+  word-spacing: 1px;
   margin: 7px 0;
   background: rgb(168, 255, 168);
   color: black;

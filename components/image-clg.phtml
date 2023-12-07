@@ -46,7 +46,9 @@
 				<div class="text-view">
 					<?php if ($image_gallery_text_or_login_modal_toggler == 'login') {
 						include_once('./components/login-form.phtml');
-					} else {
+					} else if($image_gallery_text_or_login_modal_toggler == 'signup'){
+						include_once("./components/signup-form.phtml");
+					}else {
 					?>
 						<div class="Observe" data-onview="fade-in" data-onout='fade-out'>
 							<h1>Welcome to Explore Socotra co.

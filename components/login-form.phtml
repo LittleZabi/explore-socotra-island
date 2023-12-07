@@ -1,15 +1,15 @@
 <div class="form-modal">
     <div class="in-modal">
         <div class="form">
-            <form autocomplete="on">
+            <form autocomplete="on" id='sign-in-form'>
                 <h2>USER LOGIN</h2>
                 <p>
                     Resume your Socotra experience here. If you're planning a new adventure or revisiting great memories, use our login. Just type in your email address and password below to continue exploring.
                 </p>
                 <div class="flex-yxz">
                     <div class="a03x full-w">
-                        <label for="username">Enter your email address</label>
-                        <input type="text" id="username" name="username" placeholder="username or email address." />
+                        <label for="email">Enter your email address</label>
+                        <input type="text" id="email" name="email" placeholder="E.g. johndoe123@xyz.com" />
                     </div>
                 </div>
                 <div class="flex-yxz">
@@ -21,11 +21,10 @@
                 <div>
                 </div>
                 <div class="flex" style="flex-direction: column;">
-                    <input type="submit" class="login-btn" value="Sign In" />
-                    <!-- <span class="message danger">Account successfully created!</span> -->
+                    <button type="button" class="login-btn btn" onclick="signIn()">Sign In</button>
+                    <span id="alert-text"></span>
                 </div>
-                <p class="lower-message">Don't have an account yet? please <a href='/signup'>sign up.</a></p>
-
+                <p class="lower-message">Don't have an account yet? please <a href='/?p=signup'>sign up.</a></p>
             </form>
         </div>
     </div>

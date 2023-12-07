@@ -1,3 +1,170 @@
+const Cookies = {
+  remove: (name) => {
+    document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+  },
+  set: (name, value, options = { expires: 1, maxAge: "", path: "/" }) => {
+    options = options ? options : {};
+    if (options?.expires)
+      options.expires = new Date(
+        Date.now() + 86400000 * Number(options.expires)
+      );
+    options.path = options.path ? options.path : "/";
+    options.secure = options.secure ? options.secure : false;
+    let cookies = `${name}=${value}`;
+    for (const option in options) {
+      if (options.hasOwnProperty(option)) {
+        if (option === "maxAge") cookies += `;max-age=${options[option]}`;
+        // @ts-ignore
+        else cookies += `;${option}=${options[option]}`;
+      }
+    }
+    document.cookie = cookies;
+  },
+  get: (name) => {
+    let cookies = document.cookie.split(";");
+    let value = null;
+    for (const c of cookies) {
+      let [n, v] = c.split("=");
+      if (n.trim() === name) return decodeURIComponent(v.trim());
+    }
+    return value;
+  },
+};
+const signIn = async () => {
+  const form = document.getElementById("sign-in-form");
+  const email = form["email"];
+  const password = form["password"];
+  if (email.value === "") {
+    createAlert(email, "Please enter your email address.", "alert");
+    return 0;
+  }
+  if (password.value === "") {
+    createAlert(password, "Please enter your password.", "alert");
+    return 0;
+  }
+  const formData = new FormData();
+  formData.append("email", email.value);
+  formData.append("password", password.value);
+  formData.append('signin', 1);
+  await fetch("/api/get-data.php", {
+    method: "POST",
+    body: formData,
+  })
+    .then((res) => res.text())
+    .then((res) => {
+      console.log('response: ', res);
+    })
+    .catch((e) => createAlert("alert-text", "Error: " + e.message, "danger"));
+};
+const postSignUp = async (data) => {
+  const form = new FormData();
+  form.append("signup", 1);
+  for (let item in data) {
+    if (data[item]) form.append(item, data[item]);
+  }
+  console.log(form);
+  await fetch("/api/set-data.php", {
+    method: "POST",
+    body: form,
+  })
+    .then((res) => res.json())
+    .then((res) => {
+      console.log("res: ", res);
+      createAlert("alert-text", res.message, res.success ? "success" : "alert");
+      if (res.success) {
+        Cookies.set(
+          "user",
+          JSON.stringify({
+            name: res.name,
+            email: res.email,
+            avatar: res.avatar,
+          }),
+          { expires: 31 }
+        );
+        window.location.href = "/";
+      }
+    })
+    .catch((e) => createAlert("alert-text", "Error: " + e.message, "danger"));
+};
+const submitSignUp = () => {
+  const form = document.getElementById("signup-form");
+  let fullname = form["fullname"];
+  let email = form["email"];
+  let avatar = form["avatar"];
+  let password = form["password"];
+  let repassword = form["re-password"];
+  let root_path = form["root_path"].value;
+  let f = false;
+  if (fullname.value === "")
+    f = createAlert(fullname, "Please Enter your fullname.", "alert");
+  else if (email.value === "")
+    f = createAlert(email, "Please Enter your email address.", "alert");
+  else if (password.value === "") {
+    f = createAlert(password, "Please Enter your password.", "alert");
+  } else if (password.value !== "" && password.value !== repassword.value) {
+    f = createAlert(
+      repassword,
+      "Password is not matched please confirm your password.",
+      "alert"
+    );
+  }
+  if (f) {
+    return 0;
+  } else {
+    postSignUp({
+      fullname: fullname.value,
+      email: email.value,
+      avatar: avatar.files[0],
+      password: password.value,
+      root_path,
+    });
+  }
+};
+const createAlert = (id, message, variant) => {
+  let currElement = id;
+  if (typeof id === "string") currElement = document.getElementById(id);
+  const span = document.createElement("span");
+  span.classList.add("message");
+  span.classList.add(variant);
+  span.innerText = message;
+  currElement.parentElement.appendChild(span);
+  span.scrollIntoView({ behavior: "smooth", block: "center" });
+  currElement.focus();
+  setTimeout(() => {
+    span.remove();
+  }, 5000);
+  return 1;
+};
+const handleImage = (element) => {
+  if (element.files && element.files[0]) {
+    const file = element.files[0];
+    let allowedTypes = ["image/png", "image/jpeg", "image/jpg"];
+    if (!allowedTypes.includes(file.type)) {
+      createAlert(
+        element,
+        "only png, jpg format are support. please select image of these files format.",
+        "alert"
+      );
+      return 0;
+    }
+    if (file.size > 5000000) {
+      createAlert(
+        element,
+        "Image size is greater then 5MB please select image less then 5MB.",
+        "alert"
+      );
+      return 0;
+    }
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      document.getElementById(
+        "file-placeholder"
+      ).innerHTML = `<img src='${e.target.result}' alt='picture'/>`;
+    };
+    reader.readAsDataURL(file);
+  }
+};
+const handleImgPlaceholder = () => document.getElementById("avatar").click();
 const IntersectionOptions = {
   root: null,
   rootMargin: "-140px 0px -140px 0px",
@@ -20,7 +187,7 @@ function viewPort(element) {
   intersectionObserver.observe(element);
 }
 const lazyLoad = (element) => {
-   const observer = new IntersectionObserver((entries, observer) => {
+  const observer = new IntersectionObserver((entries, observer) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         element.src = element.dataset.src;
@@ -29,10 +196,10 @@ const lazyLoad = (element) => {
       }
     });
   }, {});
-  observer.observe(element)
+  observer.observe(element);
 };
 window.addEventListener("DOMContentLoaded", (e) => {
-  // intersection observer on view 
+  // intersection observer on view
   const intersectionElement = document.querySelectorAll(".Observe");
   intersectionElement.forEach((element) => viewPort(element));
   // lazy loading images

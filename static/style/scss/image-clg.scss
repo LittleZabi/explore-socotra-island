@@ -59,6 +59,7 @@
         backdrop-filter: blur(18px);
         padding: 25px;
         margin: 0 24px 0 140px;
+        z-index: 2;
         & h1 {
             font-size: 65px;
             letter-spacing: 1px;
