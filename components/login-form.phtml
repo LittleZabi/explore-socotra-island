@@ -2,7 +2,11 @@
     <div class="in-modal">
         <div class="form">
             <form autocomplete="on" id='sign-in-form'>
-                <h2>USER LOGIN</h2>
+                <?php if (isset($_SESSION['static-message'])) {?>
+                    <h2><?php echo $_SESSION['static-message']; ?></h2>
+                <?php } else { ?>
+                    <h2>USER LOGIN</h2>
+                <?php } ?>
                 <p>
                     Resume your Socotra experience here. If you're planning a new adventure or revisiting great memories, use our login. Just type in your email address and password below to continue exploring.
                 </p>

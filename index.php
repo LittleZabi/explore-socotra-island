@@ -3,6 +3,7 @@ define('ROOT_PATH', __DIR__);
 $title = 'HOME';
 include_once('./lib/global-vars.php');
 include_once('./lib/__functions.php');
+include_once('./lib/database.php');
 
 $b = __DIR__ . '/pages/backend/' . getPage() . '-backend.php';
 if (is_file($b)) include_once($b);

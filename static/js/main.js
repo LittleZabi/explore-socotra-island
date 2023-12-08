@@ -1,6 +1,7 @@
 const Cookies = {
   remove: (name) => {
     document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+    return 1;
   },
   set: (name, value, options = { expires: 1, maxAge: "", path: "/" }) => {
     options = options ? options : {};
@@ -19,6 +20,7 @@ const Cookies = {
       }
     }
     document.cookie = cookies;
+    return 1;
   },
   get: (name) => {
     let cookies = document.cookie.split(";");
@@ -29,6 +31,66 @@ const Cookies = {
     }
     return value;
   },
+};
+const submitVisaForm = async () => {
+  const form = document.getElementById("visa-form");
+  const formData = new FormData();
+  let fields = [
+    "user_id",
+    "name",
+    "nationality",
+    "gender",
+    "dob",
+    "martial",
+    "profession",
+    "passport_no",
+    "passport_type",
+    "date_of_issue",
+    "expiry_date",
+    "other_name",
+    "permanent_addr",
+    "phone",
+    "purpose_of_visit",
+    "duration_of_visa_req",
+    "departure_date",
+    "stay_period",
+    "reference_in_yemen",
+  ];
+  let isValid = true;
+  for (let f of fields) {
+    if(form[f].value.trim() === ''){
+      let name = f === 'dob' ? 'date of birth' : f.replace('_', ' ');
+      createAlert(form[f], `Please fill ${name} field. ${name} is required.`, 'alert');
+      isValid = false;
+      break;
+    }else{
+      formData.append(f, form[f].value);
+    }
+  }
+  if(isValid){
+   formData.append('save-visa', 1); 
+   if(form['form-type'].value === 'update') formData.append('form-id', form['form-id'].value);
+   formData.append('form-type', form['form-type'].value)
+    await fetch('/api/set-data.php', {
+      method: 'POST',
+      body: formData
+    })
+    .then(res => res.text())
+    .then(res => {
+      console.log(res)
+      if(res === 'success'){
+        createAlert("alert-text", form['form-type'].value === 'update' ? "Updated successfully!" : "Your form is submitted successfully. we will inform you in next step", 'success');
+      }
+     } )
+    .catch(e => createAlert('alert-text', e.message, 'danger'));
+
+  }
+};
+const signOut = () => {
+  if (Cookies.remove("user")) {
+    createAlert("alert-text", "Sign out successfully.");
+    window.location.href = "/?p=login";
+  }
 };
 const signIn = async () => {
   const form = document.getElementById("sign-in-form");
@@ -45,14 +107,20 @@ const signIn = async () => {
   const formData = new FormData();
   formData.append("email", email.value);
   formData.append("password", password.value);
-  formData.append('signin', 1);
+  formData.append("signin", 1);
   await fetch("/api/get-data.php", {
     method: "POST",
     body: formData,
   })
-    .then((res) => res.text())
+    .then((res) => res.json())
     .then((res) => {
-      console.log('response: ', res);
+      if (res.success === 0) {
+        createAlert("alert-text", res.message, "alert");
+      } else if (res.id) {
+        Cookies.set("user", JSON.stringify(res));
+        createAlert("alert-text", "Succesfully logged!", "success");
+        window.location.href = "/";
+      }
     })
     .catch((e) => createAlert("alert-text", "Error: " + e.message, "danger"));
 };
@@ -69,7 +137,6 @@ const postSignUp = async (data) => {
   })
     .then((res) => res.json())
     .then((res) => {
-      console.log("res: ", res);
       createAlert("alert-text", res.message, res.success ? "success" : "alert");
       if (res.success) {
         Cookies.set(
@@ -78,6 +145,7 @@ const postSignUp = async (data) => {
             name: res.name,
             email: res.email,
             avatar: res.avatar,
+            id: Number(res.id)
           }),
           { expires: 31 }
         );

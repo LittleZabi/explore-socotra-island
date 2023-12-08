@@ -1,5 +1,5 @@
-.login-page{
-	margin-top: 150px;
+.login-page {
+  margin-top: 150px;
   margin-bottom: 50px;
 }
 .form {
@@ -46,8 +46,10 @@
         border: none;
         border-bottom: 1px solid #5f5f5f52;
         width: 92%;
-        background: none;
+        background:none;
         color: inherit;
+        font-size: 16px;
+        letter-spacing: 1px;
         &:active,
         &:hover {
           border-bottom-color: rgb(0, 255, 106);
@@ -57,8 +59,7 @@
         cursor: pointer;
         text-transform: uppercase;
         & option {
-          color: var(--primary-color);
-          background: var(--bg-color);
+          background: $bg-color;
           font-size: 14px;
           text-transform: uppercase;
         }
@@ -129,12 +130,12 @@
 .danger-border {
   border-color: rgb(var(--color-danger)) !important;
 }
-.img-plc{
-  & input{
+.img-plc {
+  & input {
     display: none;
   }
 }
-.image-placeholder{
+.image-placeholder {
   background: $bg-color;
   width: 180px;
   padding: 10px;
@@ -143,22 +144,111 @@
   border-radius: 5px;
   border: 1px solid rgb(56, 56, 56);
   cursor: pointer;
-  & svg{
+  & svg {
     width: 80px;
     height: 80px;
     opacity: 0.8;
   }
-  & span{
+  & span {
     display: block;
     font-size: 12px;
   }
-  & img{
+  & img {
     width: 100px;
     height: 100px;
     border-radius: 50%;
     object-fit: cover;
   }
 }
-#alert-text{
+#alert-text {
   display: none;
+}
+
+.visa-view {
+  & .form-modal {
+    max-width: 900px;
+    margin: auto;
+    background: #000000;
+    backdrop-filter: blur(38px);
+    border-radius: 9px;
+    & p{
+      font-size: 16px;
+    }
+  }
+  margin-bottom: 100px !important;
+  & .visa-wrap{
+    display: flex;
+    margin-top: -60px;
+    position: relative;
+    z-index: 1;
+    & .left-view{
+      width: 300px;
+      background: black;
+      border-radius: 9px;
+      margin: 0 8px;
+      padding: 10px;
+      & h3{
+        margin: 20px 0;
+        text-align: center;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        font-size: 22px;
+        color: #ffffff57;
+      }
+      & .sck{
+        margin: 10px;
+        display: block;
+      }
+      & section{
+        background: #1f1f25; 
+        padding: 10px;
+        border-radius: 3px;
+        margin: 5px 0;
+        cursor: pointer;
+        & a{
+          display: block;
+          color: #00bcd4;
+          text-transform: uppercase;
+          font-size: 12px;
+          margin: 5px 0;
+          text-decoration: none;
+        }
+        &:hover{
+          background: #3d3548;
+        }
+        & span.form-id{
+          display: block;
+          font-size: 18px;
+          font-weight: 500;
+        }
+        & span.createdAt{
+          font-size: 14px;
+          & span{
+            text-transform: uppercase;
+          }
+        }
+      }
+    }
+  }
+}
+.visa-sec {
+  & .top-view-wrapper {
+    height: 450px !important;
+    & .top-view-text h1{
+      font-size: 64px !important;
+      text-shadow: 0 0 2px #000000db;
+    }
+  }
+}
+.x32{
+  font-size: 20px;
+  color: white;
+  text-decoration: none;
+  text-transform: uppercase;
+  text-align: center;
+  display: block;
+  margin-top: 20px;
+  &:hover{
+    color: dodgerblue;
+  }
 }

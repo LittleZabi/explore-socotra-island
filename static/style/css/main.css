@@ -425,6 +425,8 @@
   width: 92%;
   background: none;
   color: inherit;
+  font-size: 16px;
+  letter-spacing: 1px;
 }
 .form .flex-yxz .a03x input:active, .form .flex-yxz .a03x input:hover, .form .flex-yxz .a03x select:active, .form .flex-yxz .a03x select:hover {
   border-bottom-color: rgb(0, 255, 106);
@@ -434,8 +436,7 @@
   text-transform: uppercase;
 }
 .form .flex-yxz .a03x select option {
-  color: var(--primary-color);
-  background: var(--bg-color);
+  background: #14121e;
   font-size: 14px;
   text-transform: uppercase;
 }
@@ -539,6 +540,95 @@
 
 #alert-text {
   display: none;
+}
+
+.visa-view {
+  margin-bottom: 100px !important;
+}
+.visa-view .form-modal {
+  max-width: 900px;
+  margin: auto;
+  background: #000000;
+  backdrop-filter: blur(38px);
+  border-radius: 9px;
+}
+.visa-view .form-modal p {
+  font-size: 16px;
+}
+.visa-view .visa-wrap {
+  display: flex;
+  margin-top: -60px;
+  position: relative;
+  z-index: 1;
+}
+.visa-view .visa-wrap .left-view {
+  width: 300px;
+  background: black;
+  border-radius: 9px;
+  margin: 0 8px;
+  padding: 10px;
+}
+.visa-view .visa-wrap .left-view h3 {
+  margin: 20px 0;
+  text-align: center;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-size: 22px;
+  color: rgba(255, 255, 255, 0.3411764706);
+}
+.visa-view .visa-wrap .left-view .sck {
+  margin: 10px;
+  display: block;
+}
+.visa-view .visa-wrap .left-view section {
+  background: #1f1f25;
+  padding: 10px;
+  border-radius: 3px;
+  margin: 5px 0;
+  cursor: pointer;
+}
+.visa-view .visa-wrap .left-view section a {
+  display: block;
+  color: #00bcd4;
+  text-transform: uppercase;
+  font-size: 12px;
+  margin: 5px 0;
+  text-decoration: none;
+}
+.visa-view .visa-wrap .left-view section:hover {
+  background: #3d3548;
+}
+.visa-view .visa-wrap .left-view section span.form-id {
+  display: block;
+  font-size: 18px;
+  font-weight: 500;
+}
+.visa-view .visa-wrap .left-view section span.createdAt {
+  font-size: 14px;
+}
+.visa-view .visa-wrap .left-view section span.createdAt span {
+  text-transform: uppercase;
+}
+
+.visa-sec .top-view-wrapper {
+  height: 450px !important;
+}
+.visa-sec .top-view-wrapper .top-view-text h1 {
+  font-size: 64px !important;
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.8588235294);
+}
+
+.x32 {
+  font-size: 20px;
+  color: white;
+  text-decoration: none;
+  text-transform: uppercase;
+  text-align: center;
+  display: block;
+  margin-top: 20px;
+}
+.x32:hover {
+  color: dodgerblue;
 }
 
 body {
@@ -697,6 +787,14 @@ footer {
   background: #ff7373;
 }
 
+.logout-view {
+  margin-top: 150px;
+  width: 480px;
+  background-color: #14121e;
+  border-radius: 12px;
+  padding-bottom: 25px;
+}
+
 #top-view {
   position: relative;
 }
@@ -841,6 +939,12 @@ header nav {
 }
 header nav .last-li {
   margin-right: 30px;
+}
+header nav .last-li img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 header nav .header-icons {
   display: flex;

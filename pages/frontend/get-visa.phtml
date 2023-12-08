@@ -1,0 +1,261 @@
+<div class="top-view visa-sec fade-in" id="top-view">
+    <div class="top-view-wrapper df df-c">
+        <div class="top-view-slide df df-c fade-in">
+            <div class="image">
+                <img src="/static/media/visa/image (1).jpg" alt="abc" />
+                <div class="top-layer"></div>
+            </div>
+            <div class="page-size top-view-text df df-dc">
+                <h1>Discover Socotra</h1>
+            </div>
+        </div>
+        <div class="top-view-slide df df-c">
+            <div class="image">
+                <img src="/static/media/visa/image (2).jpg" alt="abc" />
+            </div>
+            <div class="page-size top-view-text df df-dc">
+                <h1>Heaven on the earth</h1>
+            </div>
+        </div>
+        <div class="top-view-slide df df-c">
+            <div class="image">
+                <img src="/static/media/visa/image (3).jpg" alt="abc" />
+            </div>
+            <div class="page-size top-view-text df df-dc">
+                <h1>Take Flight now</h1>
+            </div>
+        </div>
+        <div class="top-view-slide df df-c">
+            <div class="image">
+                <img src="/static/media/visa/image (4).jpg" alt="abc" />
+            </div>
+            <div class="page-size top-view-text df df-dc">
+                <h1>Explore socotra now</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="page-size visa-view fade-in">
+    <?php
+    if ($user == false) {
+        $_SESSION['static-message'] = "Please Login then you can submit your visa and get notification and other informations.";
+        include_once(ROOT_PATH . '/components/login-form.phtml');
+    } else {
+    ?>
+        <div class="visa-wrap">
+            <div class="left-view">
+                <span class="sck">Your other submited forms</span>
+                <?php
+                if (count($past_forms) > 0) {
+                    foreach ($past_forms as $form) {
+                        if(isset($formView['id']) && $formView['id'] == $form['id']){}else{
+                ?>
+                        <section>
+                            <span class="form-id">Form <?php echo $form['id']; ?></span>
+                            <span class='createdAt'>submited at <span>
+                                    <script>
+                                        document.write(life("<?php echo $form['createdAt']; ?>").format('D MM YYYY'));
+                                    </script>
+                                </span> updated at <span>  <script>
+                                        document.write(life("<?php echo $form['updatedAt']; ?>").from());
+                                    </script></span></span>
+                            <a href="/?p=get-visa&form-id=<?php echo $form['id']; ?>">Show form</a>
+                        </section>
+                    <?php
+                         } }
+                } else {
+                    ?>
+                    <h3>No Forms Found</h3>
+                <?php
+                }
+
+                ?>
+                <?php
+                   if(isset($formView['id'])){
+                    ?>
+                   <a href="/?p=get-visa" class='x32'>Submit New Form</a> 
+                    <?php 
+                   }
+                ?>
+
+            </div>
+            <div class="form-modal">
+                <div class="in-modal">
+                    <div class="form">
+                        <form autocomplete="on" id='visa-form'>
+                            <h2>Application Form for Entry Visa</h2>
+                            <?php 
+                                if(isset($formView['id'])){
+
+                        ?>
+                        <h3 style="color:dodgerblue">You submited this form on  <script>
+                                        document.write(life("<?php echo $form['createdAt']; ?>").format('D MM YYYY'));
+                                    </script>
+                                    </h3>
+                        <?php
+                                }
+                            ?>
+                            <p>
+                                Welcome to the Explore Socotra Visa Application. Please enter your details in the fields below to embark on your journey to Socotra. Fill in all required fields, and let us craft your visa for an unforgettable adventure. Your Socotra exploration awaits!
+                            </p>
+
+                            <input type="hidden" name="user_id" value="<?php echo $user->id; ?>">
+                            <div class="flex-yxz">
+                                <div class="a03x full-w">
+                                    <label for="name">Enter fullname & surname</label>
+                                    <input type="text" required value="<?php echo isset($formView['name']) ? $formView['name'] : ''; ?>" id="name" name="name" placeholder="Enter your fullname and surname here." />
+                                </div>
+                            </div>
+                            <div class="flex-yxz">
+                                <div class="a03x">
+                                    <label for="nationality">Nationality</label>
+                                    <select id="nationality" required name="nationality">
+                                        <option disabled selected value="">--Select your country--</option>
+                                        <?php
+                                        foreach ($countries as $country) {
+                                            if ($country['country'] == $formView['nationality']) {
+                                        ?>
+                                                <option selected default value="<?php echo $country['country'] ?>"><?php echo $country['country']; ?></option>
+                                            <?php
+                                            } else {
+                                            ?>
+                                                <option value="<?php echo $country['country'] ?>"><?php echo $country['country']; ?></option>
+                                        <?php
+                                            }
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                                <div class="a03x">
+                                    <label for="gender">Select Gender</label>
+                                    <select required name="gender" id="gender">
+                                        <option value="" selected>--Select your gender--</option>
+                                        <option value="male" <?php echo (isset($formView['gender']) && $formView['gender'] == 'male') ? 'selected' : ''; ?>>Male</option>
+                                        <option value="female" <?php echo (isset($formView['gender']) && $formView['gender']  == 'female') ? 'selected' : ''; ?>>Female</option>
+                                        <option value="Other" <?php echo (isset($formView['gender']) && $formView['gender'] == 'Other') ? 'selected' : ''; ?>>Other</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="flex-yxz">
+                                <div class="a03x full-w">
+                                    <label for="dob">Place & Date of Birth</label>
+                                    <input type="text" id="dob" name="dob" required value="<?php echo isset($formView['dob']) ? $formView['dob'] : ''; ?>" placeholder="Type here..." />
+                                </div>
+                            </div>
+
+                            <div class="flex-yxz">
+                                <div class="a03x full-w">
+                                    <label for="martial">Martial Status</label>
+                                    <input type="text" id="martial" name="martial" required value="<?php echo isset($formView['martial']) ? $formView['martial'] : ''; ?>" placeholder="Type your martial status here." />
+                                </div>
+                            </div>
+
+                            <div class="flex-yxz">
+                                <div class="a03x full-w">
+                                    <label for="profession">Profession</label>
+                                    <input type="text" id="profession" name="profession" required value="<?php echo isset($formView['profession']) ? $formView['profession'] : ''; ?>" placeholder="Type your profession here." />
+                                </div>
+                            </div>
+
+                            <div class="flex-yxz">
+                                <div class="a03x">
+                                    <label for="pass-num">Passport Number</label>
+                                    <input type="text" id="pass-num" name="passport_no" required value="<?php echo isset($formView['passport_no']) ? $formView['passport_no'] : ''; ?>" placeholder="Enter your Passport number." />
+                                </div>
+                                <div class="a03x">
+                                    <label for="pass-type">Type</label>
+                                    <input type="text" id="pass-type" name="passport_type" required value="<?php echo isset($formView['passport_type']) ? $formView['passport_type'] : ''; ?>" placeholder="Enter your passport type." />
+                                </div>
+                            </div>
+
+                            <div class="flex-yxz">
+                                <div class="a03x full-w">
+                                    <label for="date-of-issue">Place & Date of issue</label>
+                                    <input type="text" id="date-of-issue" name="date_of_issue" required value="<?php echo isset($formView['date_of_issue']) ? $formView['date_of_issue'] : ''; ?>" placeholder="Enter Place and Date of issue." />
+                                </div>
+                            </div>
+
+                            <div class="flex-yxz">
+                                <div class="a03x full-w">
+                                    <label for="expiry-date">Expiry Date</label>
+                                    <input type="text" id="expiry-date" name="expiry_date" required value="<?php echo isset($formView['expiry_date']) ? $formView['expiry_date'] : ''; ?>" placeholder="Enter Expiry Date." />
+                                </div>
+                            </div>
+
+                            <div class="flex-yxz">
+                                <div class="a03x full-w">
+                                    <label for="other-name">Other names shown in passport</label>
+                                    <input type="text" id="other-name" name="other_name" value="<?php echo isset($formView['other_name']) ? $formView['other_name'] : ''; ?>" placeholder="Other names shown in passport." />
+                                </div>
+                            </div>
+
+                            <div class="flex-yxz">
+                                <div class="a03x full-w">
+                                    <label for="permanent-addr">Permanent Address</label>
+                                    <input type="text" id="permanent-addr" name="permanent_addr" value="<?php echo isset($formView['permanent_addr']) ? $formView['permanent_addr'] : ''; ?>" placeholder="Type your permanent Address." />
+                                </div>
+                            </div>
+
+                            <div class="flex-yxz">
+                                <div class="a03x full-w">
+                                    <label for="phone">Phone Number</label>
+                                    <input type="text" id="phone" name="phone" value="<?php echo isset($formView['phone']) ? $formView['phone'] : ''; ?>" placeholder="Enter your phone number." />
+                                </div>
+                            </div>
+
+                            <div class="flex-yxz">
+                                <div class="a03x full-w">
+                                    <label for="purpose-of-visit">Purpose of visit</label>
+                                    <input type="text" id="purpose-of-visit" name="purpose_of_visit" value="<?php echo isset($formView['purpose_of_visit']) ? $formView['purpose_of_visit'] : ''; ?>" placeholder="Type what's the purpose of your visit." />
+                                </div>
+                            </div>
+
+                            <div class="flex-yxz">
+                                <div class="a03x full-w">
+                                    <label for="duration-of-visa-req">Duration of visa requested</label>
+                                    <input type="text" id="duration-of-visa-req" name="duration_of_visa_req" value="<?php echo isset($formView['duration_of_visa_req']) ? $formView['duration_of_visa_req'] : ''; ?>" placeholder="Enter Duration of visa requested." />
+                                </div>
+                            </div>
+
+                            <div class="flex-yxz">
+                                <div class="a03x full-w">
+                                    <label for="departure-date">Departure Date</label>
+                                    <input type="text" id="duration-date" name="departure_date" value="<?php echo isset($formView['departure_date']) ? $formView['departure_date'] : ''; ?>" placeholder="Type Departure date." />
+                                </div>
+                            </div>
+
+                            <div class="flex-yxz">
+                                <div class="a03x full-w">
+                                    <label for="stay_period">Period of stay in Yemen</label>
+                                    <input type="text" id="stay_period" name="stay_period" value="<?php echo isset($formView['stay_period']) ? $formView['stay_period'] : ''; ?>" placeholder="Enter Period here." />
+                                </div>
+                            </div>
+
+                            <div class="flex-yxz">
+                                <div class="a03x full-w">
+                                    <label for="reference-in-yemen">Reference in Yemen</label>
+                                    <input type="text" id="reference-in-yemen" name="reference_in_yemen" value="<?php echo isset($formView['reference_in_yemen']) ? $formView['reference_in_yemen'] : ''; ?>" placeholder="Enter Reference here." />
+                                </div>
+                            </div>
+                            <?php if (isset($formView['name'])) {
+                            ?>
+                                <input type="hidden" name="form-type" value="update">
+                                <input type="hidden" name="form-id" value="<?php echo $formView['id']; ?>">
+                            <?php } else { ?>
+                                <input type="hidden" name="form-type" value="new">
+                            <?php } ?>
+                            <div class="flex">
+                                <button type="button" class="login-btn btn" onclick="submitVisaForm()"><?php echo isset($formView['name']) ? 'Save Form' : 'Submit Form'; ?></button>
+                                <span id="alert-text"></span>
+                            </div>
+
+                            <p class="lower-message">Don't have an account yet? please <a href='/?p=signup'>sign up.</a></p>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php } ?>
+</div>
+<script src="/static/js/image-slide.js"></script>
