@@ -1,103 +1,210 @@
-
 .top-image-view {
-    margin: auto;
-    margin-top: 50px;
-    position: relative;
-    & .qoute {
-        position: absolute;
-        background: $half-opacity;
-        backdrop-filter: blur(12px);
-        width: 130px;
-        padding: 15px;
-        border-radius: 8px;
-        right: 220px;
-        top: 180px;
-        font-size: 14px;
-        z-index: 2;
-        text-align: center;
-        cursor: pointer;
-        opacity: 0;
-        transition: 500ms ease-in;
-        &:hover,
-        &.active {
-            opacity: 1;
-        }
-        &.q1 {
-            right: 520px;
-            top: 26px;
-        }
-        &.q2 {
-            top: 360px;
-            right: 10px;
-        }
-        &.q3 {
-            top: 575px;
-            right: 556px;
-        }
-        &.q4 {
-            top: 600px;
-            right: 220px;
-        }
-        &.q5 {
-            top: 867px;
-            right: 194px;
-        }
-        &.q6 {
-            top: 710px;
-            right: 85%;
-        }
-        &.q7 {
-            top: 870px;
-            right: 550px;
-        }
+  margin: auto;
+  margin-top: 50px;
+  position: relative;
+  & .qoute {
+    position: absolute;
+    background: $half-opacity;
+    backdrop-filter: blur(12px);
+    width: 130px;
+    padding: 15px;
+    border-radius: 8px;
+    right: 220px;
+    top: 180px;
+    font-size: 14px;
+    z-index: 2;
+    text-align: center;
+    cursor: pointer;
+    opacity: 0;
+    transition: 500ms ease-in;
+    &:hover,
+    &.active {
+      opacity: 1;
     }
-    & .text-view {
-        position: absolute;
-        top: 178px;
-        width: 624px;
-        background: $half-opacity;
-        backdrop-filter: blur(18px);
-        padding: 25px;
-        margin: 0 24px 0 140px;
-        z-index: 2;
-        & h1 {
-            font-size: 65px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-        & p {
-            font-size: 18px;
-            margin-top: 20px;
-        }
-        & a {
-            margin-top: 30px;
-            display: block;
-        }
+    &.q1 {
+      right: 520px;
+      top: 26px;
     }
+    &.q2 {
+      top: 360px;
+      right: 10px;
+    }
+    &.q3 {
+      top: 575px;
+      right: 556px;
+    }
+    &.q4 {
+      top: 600px;
+      right: 220px;
+    }
+    &.q5 {
+      top: 867px;
+      right: 194px;
+    }
+    &.q6 {
+      top: 710px;
+      right: 85%;
+    }
+    &.q7 {
+      top: 870px;
+      right: 550px;
+    }
+  }
+  & .text-view {
+    position: absolute;
+    top: 178px;
+    width: 624px;
+    background: $half-opacity;
+    backdrop-filter: blur(18px);
+    padding: 25px;
+    margin: 0 24px 0 140px;
+    z-index: 2;
+    & h1 {
+      font-size: 65px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    & p {
+      font-size: 18px;
+      margin-top: 20px;
+    }
+    & a {
+      margin-top: 30px;
+      display: block;
+    }
+  }
 }
 .gallery {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-start;
+  & .images {
     display: flex;
-    flex-wrap: nowrap;
-    flex-direction: column;
-    align-items: flex-end;
-    justify-content: flex-start;
-    & .images {
-        display: flex;
-        & img {
-            max-width: 300px;
-            max-height: 256px;
-            object-fit: cover;
-            margin: 2px;
-            transition: 300ms ease-in-out;
-            opacity: 0.1;
-            cursor: pointer;
-            filter: saturate(1.5) brightness(1.2);
-            &:hover {
-                opacity: 1;
-            }
-            &.active {
-                opacity: 1;
-            }
-        }
+    & img {
+      max-width: 300px;
+      max-height: 256px;
+      object-fit: cover;
+      margin: 2px;
+      transition: 300ms ease-in-out;
+      opacity: 0.1;
+      cursor: pointer;
+      filter: saturate(1.5) brightness(1.2);
+      &:hover {
+        opacity: 1;
+      }
+      &.active {
+        opacity: 1;
+      }
     }
+  }
+}
+@media (max-width: 1180px) {
+    .qoute{
+        display: none;
+    }
+  .gallery {
+    & .images {
+      & img {
+        max-width: 243px;
+      }
+    }
+  }
+}
+@media (max-width: 992px) {
+  .top-image-view {
+    & .qoute {
+      & .q5 {
+        display: none;
+      }
+    }
+    & .text-view {
+      margin: 0 24px 0 12px;
+      width: 500px;
+      & h1 {
+        font-size: 55px;
+      }
+    }
+  }
+  .gallery {
+    & .images {
+      & img {
+        max-width: 185px;
+      }
+    }
+  }
+}
+@media (max-width: 768px) {
+  .top-image-view {
+    & .text-view {
+      top: 120px;
+    }
+  }
+  .gallery {
+    & .images {
+      & img {
+        max-width: 150px;
+      }
+    }
+  }
+}
+@media (max-width: 620px) {
+  .top-image-view {
+    & .text-view {
+      width: 390px;
+      top: 52px;
+      padding: 16px;
+      & h1 {
+        font-size: 44px;
+      }
+      & p {
+        font-size: 18px;
+        margin-top: 14px;
+      }
+      & a.btn {
+        margin-top: 19px;
+        padding: 11px 34px;
+        font-size: 14px;
+        font-weight: 400;
+      }
+    }
+  }
+  .gallery {
+    & .images {
+      & img {
+        max-width: 115px;
+      }
+    }
+  }
+}
+@media (max-width: 480px) {
+  .gallery .images img {
+    max-width: 84px;
+  }
+  .top-image-view .text-view {
+    width: 260px;
+    top: 41px;
+    & h1 {
+      font-size: 27px;
+    }
+    & p{
+        font-size: 14px;
+    }
+  }
+}
+@media (max-width: 360px) {
+  .gallery .images img {
+    max-width: 75px;
+  }
+  .top-image-view .text-view {
+    width: 264px;
+    top: 41px;
+    & h1 {
+      font-size: 22px;
+    }
+    & p {
+      font-size: 12px;
+    }
+  }
 }

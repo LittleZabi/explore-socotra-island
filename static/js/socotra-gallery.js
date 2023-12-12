@@ -1,6 +1,10 @@
 let qoutes = document.querySelectorAll(".qoute-wrap .qoute");
 const images = document.querySelectorAll(".gallery img");
-qoutes = [...qoutes, ...images];
+if (window.innerWidth > 1180) {
+  qoutes = [...qoutes, ...images];
+} else {
+  qoutes = images;
+}
 let prev = [];
 const createIndex = () => {
   const c = () => Math.floor(Math.random() * (qoutes.length - 1));

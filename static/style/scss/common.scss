@@ -46,6 +46,7 @@ textarea {
   grid-template-areas: "header" "main" "footer";
   grid-template-rows: auto 1fr auto;
   min-height: 100vh;
+  //overflow: hidden;
 }
 .wire {
   width: 100%;
@@ -119,7 +120,7 @@ input[type="file"] {
 footer{
   text-align: center;
   background: $bg-color;
-  padding: 20px;
+  padding: 20px 0;
   width: 100%;
 }
 .lower-message{

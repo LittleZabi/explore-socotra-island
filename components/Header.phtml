@@ -6,12 +6,12 @@
 	?>
  <header id="header">
  	<nav class="page-size df-ac">
- 		<ul>
+ 		<ul class="ck">
  			<a href="/" class="logo">
  				<img src="/static/media/logo-light.png" alt="socotra.co" />
  			</a>
  		</ul>
- 		<ul class="header-icons">
+ 		<ul class="header-icons ytill">
  			<li>
  				<a href="/contact-us">ABOUT</a>
  			</li>
@@ -22,8 +22,7 @@
  				<a href="/?p=biodiversity">BIODIVERSITY</a>
  			</li>
  		</ul>
-
- 		<ul>
+ 		<ul class="ytill">
  			<li class="last-li">
  				<a href="/?p=<?php if ($user && $user->email) echo 'logout';
 								else  echo 'login'; ?>">
@@ -37,6 +36,45 @@
  						</svg>
  					<?php } ?>
  				</a>
+ 			</li>
+ 		</ul>
+ 		<ul class='drop-down'>
+ 			<li class="drop-down-button">
+ 				<svg class="drop-svg" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+ 					<path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5M12 17.25h8.25" />
+ 				</svg>
+ 				<div class="drop----list">
+ 					<ul class="drop-down-list">
+ 						<li>
+ 							<a href="/">HOME</a>
+ 						</li>
+ 						<li>
+ 							<a href="/contact-us">ABOUT</a>
+ 						</li>
+ 						<li>
+ 							<a href="/?p=get-visa">GET VISA</a>
+ 						</li>
+ 						<li>
+ 							<a href="/?p=biodiversity">BIODIVERSITY</a>
+ 						</li>
+ 					</ul>
+ 					<ul class="drop-down-list xkkkk">
+ 						<li class="last-li">
+ 							<a href="/?p=<?php if ($user && $user->email) echo 'logout';
+											else  echo 'login'; ?>">
+ 								<?php
+									if ($user && $user->avatar && $user->avatar !== '') {
+									?>
+ 									<img src="<?php echo $user->avatar; ?>" alt="<?php $user->name; ?>">
+ 								<?php } else { ?>
+ 									<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+ 										<path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
+ 									</svg>
+ 								<?php } ?>
+ 							</a>
+ 						</li>
+ 					</ul>
+ 				</div>
  			</li>
  		</ul>
  	</nav>

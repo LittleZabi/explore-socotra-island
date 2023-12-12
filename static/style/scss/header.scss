@@ -13,8 +13,15 @@ header {
       height: 57px;
     }
     & .logo {
-      & img{
-      width: 100px;
+      & img {
+        width: 100px;
+      }
+    }
+    & .drop-down {
+      top: -14px;
+      & .drop-svg {
+        width: 26px;
+        height: 26px;
       }
     }
   }
@@ -31,9 +38,10 @@ header {
     justify-content: space-between;
     padding: 0 96px;
     transition: 300ms;
-    & .last-li{
+    position: relative;
+    & .last-li {
       margin-right: 30px;
-      & img{
+      & img {
         width: 50px;
         height: 50px;
         border-radius: 50%;
@@ -59,6 +67,184 @@ header {
       & svg {
         width: 38px;
         color: white;
+      }
+    }
+  }
+}
+.drop-down {
+  padding: 0;
+  position: absolute;
+  right: 38px;
+  top: -5px;
+  text-align: right;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+  align-items: flex-end;
+  display: none;
+  transition: 300ms;
+  & .drop----list {
+    display: none;
+    background: black;
+    border-radius: 6px;
+    &:before {
+      content: "";
+      width: 30px;
+      height: 30px;
+      background: rgb(0 0 0);
+      margin-top: -5px;
+      z-index: -1;
+      display: block;
+      position: absolute;
+      border-radius: 1px;
+      right: 13px;
+      transform: rotate(45deg);
+    }
+  }
+  & .drop-down-button {
+    &:hover {
+      & .drop-svg {
+        background: #000000;
+        border-color: #ffffffb0;
+        transition: 300ms;
+      }
+      & .drop----list {
+        display: block;
+      }
+    }
+  }
+  & .drop-down-button {
+    cursor: pointer;
+    & .drop-svg {
+      padding: 4px;
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      margin: 9px;
+      transition: 300ms;
+      border: 2px solid transparent;
+    }
+  }
+  & .drop-down-list {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    width: 300px;
+    padding: 20px;
+    &.xkkkk {
+      border-top: 1px solid #ffffff21;
+      margin-top: 8px;
+      padding: 5px 20px !important;
+      & li a {
+        padding: 4px 12px !important;
+      }
+    }
+
+    & li {
+      display: block;
+      width: 100%;
+      border-radius: 4px;
+      &:hover {
+        background: #201f31;
+      }
+      &.last-li {
+        margin-right: 0 !important;
+      }
+      & a {
+        display: block;
+        padding: 10px 20px !important;
+        margin: 0;
+      }
+    }
+  }
+}
+@media (max-width: 992px) {
+  header {
+    & nav {
+      padding: 0 9px;
+      & .ytill {
+        display: none;
+      }
+      & .drop-down {
+        display: block;
+      }
+    }
+  }
+}
+@media (max-width: 768px) {
+}
+@media (max-width: 620px) {
+  header {
+    & nav {
+      padding: 0;
+      & .logo {
+        margin-left: 0;
+        & img {
+          width: 115px;
+        }
+      }
+      & .drop-down {
+        right: 14px;
+      }
+    }
+  }
+}
+@media (max-width: 480px) {
+  header {
+    & nav {
+      & ul.ck {
+        padding: 0 13px;
+      }
+      & .drop-down {
+        & .drop-down-list {
+          width: 260px;
+
+        }
+      }
+      & .logo img {
+        width: 80px;
+      }
+       & .drop----list{
+        margin-top: 3px;
+        &:before{
+          margin-top: -3px;
+          right: 21px;
+          width: 20px;
+          height: 20px;
+        }
+       }
+    }
+    &.bg {
+
+      & .logo img {
+        width: 60px;
+      }
+      & nav {
+        height: 44px;
+        & .drop-down .drop-svg{
+          margin: 3px;
+          width: 20px;   
+          height: 20px;
+        }
+        & .drop-down .drop----list{
+          margin-top: 10px;
+          margin-right: -7px;
+          right: 4px;
+          &:before{
+            right: 3px;
+          }
+        }
+      }
+    }
+  }
+}
+@media (max-width: 360px) {
+  header {
+    & nav {
+      & .drop-down {
+        & .drop-down-list {
+          width: 220px;
+        }
       }
     }
   }

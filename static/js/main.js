@@ -269,17 +269,19 @@ const lazyLoad = (element) => {
 window.addEventListener("DOMContentLoaded", (e) => {
   // intersection observer on view
   const intersectionElement = document.querySelectorAll(".Observe");
-  intersectionElement.forEach((element) => viewPort(element));
+  intersectionElement.forEach((element) =>{return 0; viewPort(element)});
   // lazy loading images
   const lazyLoadImages = document.querySelectorAll(".lazy-load");
   lazyLoadImages.forEach((e) => lazyLoad(e));
   // adding and remvoing effect on header by scroll
   const header = document.getElementById("header");
+  let scrollToNum = window.innerWidth > 380 ? 100 : 40;
   window.addEventListener("scroll", (e) => {
-    if (scrollY > 150) {
+    if (scrollY > scrollToNum) {
       header.classList.add("bg");
     } else {
       header.classList.remove("bg");
     }
   });
 });
+console.log("js is connected")

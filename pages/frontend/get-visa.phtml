@@ -44,56 +44,61 @@
     ?>
         <div class="visa-wrap">
             <div class="left-view">
-                <span class="sck">Your other submited forms</span>
-                <?php
-                if (count($past_forms) > 0) {
-                    foreach ($past_forms as $form) {
-                        if(isset($formView['id']) && $formView['id'] == $form['id']){}else{
-                ?>
-                        <section>
-                            <span class="form-id">Form <?php echo $form['id']; ?></span>
-                            <span class='createdAt'>submited at <span>
-                                    <script>
-                                        document.write(life("<?php echo $form['createdAt']; ?>").format('D MM YYYY'));
-                                    </script>
-                                </span> updated at <span>  <script>
-                                        document.write(life("<?php echo $form['updatedAt']; ?>").from());
-                                    </script></span></span>
-                            <a href="/?p=get-visa&form-id=<?php echo $form['id']; ?>">Show form</a>
-                        </section>
+                <div class="inner-left">
+                    <span class="sck">Your other submited forms</span>
                     <?php
-                         } }
-                } else {
+                    if (count($past_forms) > 0) {
+                        foreach ($past_forms as $form) {
+                            if (isset($formView['id']) && $formView['id'] == $form['id']) {
+                            } else {
                     ?>
-                    <h3>No Forms Found</h3>
-                <?php
-                }
+                                <section>
+                                    <span class="form-id">Form <?php echo $form['id']; ?></span>
+                                    <span class='createdAt'>submited at <span>
+                                            <script>
+                                                document.write(life("<?php echo $form['createdAt']; ?>").format('D MM YYYY'));
+                                            </script>
+                                        </span> updated at <span>
+                                            <script>
+                                                document.write(life("<?php echo $form['updatedAt']; ?>").from());
+                                            </script>
+                                        </span></span>
+                                    <a href="/?p=get-visa&form-id=<?php echo $form['id']; ?>">Show form</a>
+                                </section>
+                        <?php
+                            }
+                        }
+                    } else {
+                        ?>
+                        <h3>No Forms Found</h3>
+                    <?php
+                    }
 
-                ?>
-                <?php
-                   if(isset($formView['id'])){
                     ?>
-                   <a href="/?p=get-visa" class='x32'>Submit New Form</a> 
-                    <?php 
-                   }
-                ?>
-
+                    <?php
+                    if (isset($formView['id'])) {
+                    ?>
+                        <a href="/?p=get-visa" class='x32'>Submit New Form</a>
+                    <?php
+                    }
+                    ?>
+                </div>
             </div>
             <div class="form-modal">
                 <div class="in-modal">
                     <div class="form">
                         <form autocomplete="on" id='visa-form'>
                             <h2>Application Form for Entry Visa</h2>
-                            <?php 
-                                if(isset($formView['id'])){
+                            <?php
+                            if (isset($formView['id'])) {
 
-                        ?>
-                        <h3 style="color:dodgerblue">You submited this form on  <script>
+                            ?>
+                                <h3 style="color:dodgerblue">You submited this form on <script>
                                         document.write(life("<?php echo $form['createdAt']; ?>").format('D MM YYYY'));
                                     </script>
-                                    </h3>
-                        <?php
-                                }
+                                </h3>
+                            <?php
+                            }
                             ?>
                             <p>
                                 Welcome to the Explore Socotra Visa Application. Please enter your details in the fields below to embark on your journey to Socotra. Fill in all required fields, and let us craft your visa for an unforgettable adventure. Your Socotra exploration awaits!

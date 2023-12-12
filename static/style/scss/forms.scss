@@ -165,9 +165,10 @@
 }
 
 .visa-view {
+  margin-top: -60px !important;
   & .form-modal {
     max-width: 900px;
-    margin: auto;
+    margin: 0 13px 0 0;
     background: #000000;
     backdrop-filter: blur(38px);
     border-radius: 9px;
@@ -178,11 +179,10 @@
   margin-bottom: 100px !important;
   & .visa-wrap{
     display: flex;
-    margin-top: -60px;
     position: relative;
     z-index: 1;
     & .left-view{
-      width: 300px;
+      min-width: 300px;
       background: black;
       border-radius: 9px;
       margin: 0 8px;
@@ -250,5 +250,66 @@
   margin-top: 20px;
   &:hover{
     color: dodgerblue;
+  }
+}
+@media (max-width: 992px){
+  .visa-view .visa-wrap{
+    flex-direction: column;
+    align-items: center;
+    & .left-view{
+      min-width: 97%;
+      margin: 5px;
+      padding: 0;
+      & .inner-left{
+        padding: 10px;
+      }
+      & section{
+        width: 152px;
+        display: inline-block;
+      }
+    }
+  }
+  .visa-view{
+    & .form-modal{
+      max-width: 97%;
+      margin: auto;
+      padding: 0;
+    }
+  }
+}
+@media (max-width: 620px) {
+  .form{
+    padding: 5px 12px;
+    & h2{
+      font-size: 22px;
+    }
+    & p{
+      font-size: 14px;
+    }
+  .flex-yxz .a03x{
+    margin-right: 0;
+    width: 100%;
+    & select, input{
+      width: 100%;
+    }
+  }
+  }
+
+  
+}
+@media (max-width: 480px){
+  .visa-view{
+    & .visa-wrap{
+      & .left-view{
+        padding: 0px;
+      }
+      & .left-view section{
+        width: 124px;
+        padding: 7px;
+      & span.createdAt{
+        font-size: 12px;
+      }
+    }
+    }
   }
 }
