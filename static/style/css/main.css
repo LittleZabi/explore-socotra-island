@@ -1080,6 +1080,31 @@ footer {
   }
 }
 
+.about-view {
+  margin: 150px auto 100px auto;
+  background: #14121e;
+  padding: 20px;
+  max-width: 500px;
+}
+.about-view h2 {
+  font-size: 32px;
+}
+.about-view p {
+  font-size: 18px;
+}
+.about-view .icon {
+  text-align: right;
+  margin: 10px 0;
+}
+.about-view .icon a {
+  margin-left: 10px;
+  text-decoration: none;
+  cursor: pointer;
+}
+.about-view .icon img {
+  width: 50px;
+}
+
 button,
 a,
 input[type=radio],
