@@ -1,0 +1,117 @@
+.weather {
+  margin: auto;
+  margin-top: 200px;
+  & .inner-weather {
+    margin: auto;
+    background: $bg-color;
+    width: 400px;
+    padding: 44px 20px;
+    border-radius: 8px;
+    & .xkk{
+        font-size: 36px;
+        text-align: center;
+        margin: 10px 0;
+        text-transform: uppercase;
+        font-weight: 400;
+        letter-spacing: 1px;
+    }
+    & .xqew {
+      text-align: center;
+      display: block;
+      margin-top: 10px;
+      font-size: 18px;
+      & .cond {
+        display: block;
+        font-size: 20px;
+      }
+    }
+    & .weather-top-view {
+      & h3 {
+        font-size: 80px;
+        text-align: center;
+        padding: 0;
+        margin: 0;
+      }
+      & .temp {
+        width: max-content;
+        margin: auto;
+        position: relative;
+        & span {
+          font-size: 37px;
+          position: absolute;
+          top: -16px;
+          right: -11px;
+        }
+      }
+      & .text {
+        & img {
+          width: 100px;
+          margin: auto;
+          margin-top: 10px;
+          display: block;
+        }
+      }
+    }
+    #days {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      & section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 0px 1px;
+        padding: 3px 8px;
+        border-radius: 5px;
+        cursor: pointer;
+        &:hover {
+          background: linear-gradient(0deg, #180e42, #211d4b, #191436);
+        }
+        & img {
+          width: 34px;
+        }
+        & span {
+          font-size: 16px;
+          margin: 3px 0;
+          display: flex;
+          text-align: center;
+        }
+        & .scx {
+          font-size: 11px;
+          margin-top: 10px;
+          margin-left: 3px;
+          text-align: center;
+        }
+      }
+    }
+    #hourly {
+      display: flex;
+      overflow-x: scroll;
+      margin: 20px 0;
+
+      & section {
+        margin: 3px 1px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background: linear-gradient(0deg, #180e42, #211d4b, #191436);
+        padding: 5px 10px;
+        border-radius: 4px;
+        width: 90px;
+        cursor: pointer;
+        & span {
+          font-size: 14px;
+          margin: 2px 0;
+          width: max-content;
+        }
+        &:hover {
+          background: $bg-color;
+        }
+      }
+      & img {
+        width: 30px;
+        margin: 5px 0;
+      }
+    }
+  }
+}

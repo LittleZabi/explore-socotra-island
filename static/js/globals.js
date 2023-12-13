@@ -1,3 +1,8 @@
+const findAverage = (numbers) => {
+  if(numbers.length === 0)return 0;
+  const sum = numbers.reduce((acc, num) => acc + num, 0)
+  return sum / numbers.length;
+}
 const life = (__time__) => {
     let dt = new Date(__time__);
     if (!dt.getDate()) dt = new Date();
@@ -11,7 +16,7 @@ const life = (__time__) => {
       "Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday".split("_")[_i];
     const dS = (_i) => "Sun_Mon_Tue_Wed_Thu_Fri_Sat".split("_")[_i];
     const dSx = (_i) => "Su_Mo_Tu_We_Th_Fr_Sa".split("_")[_i];
-    const xd = [dt.getFullYear(), dt.getMonth(), dt.getDate(), dt.getDay()];
+    const xd = [dt.getFullYear(), dt.getMonth(), dt.getDate(), dt.getDay(), dt.getHours()];
     return {
       format: (f_) => {
         let __ = f_;
@@ -44,6 +49,12 @@ const life = (__time__) => {
         if (f_.includes("ddd")) __ = __.replace("ddd", dS(xd[3]).toString());
         if (f_.includes("dd")) __ = __.replace("dd", dSx(xd[3]).toString());
         if (f_.includes("YYYY")) __ = __.replace("YYYY", xd[0].toString());
+        if (f_.includes('H')){
+          let hour = xd[4];
+          let ampm = hour > 12 ? 'PM' : 'AM';
+          let conv = hour % 12 || 12;
+           __ = __.replace('H', conv + " " + ampm);
+        }
         if (f_.includes("YY"))
           __ = __.replace("YY", xd[0].toString().substring(2, 4));
         return __;

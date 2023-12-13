@@ -22,7 +22,16 @@
  				<a href="/?p=biodiversity">BIODIVERSITY</a>
  			</li>
  		</ul>
- 		<ul class="ytill">
+ 		<ul class="ytill df df-c">
+ 			<li class="last-li">
+ 				<a href="/?p=weather" id="header-weather">
+ 					<img src="/static/media/icons/sun.png" id="header-img" alt="sun"/>
+ 					<div class="text">
+ 						<span id="header-unit">°C</span>
+ 						<span id="header-temp"></span>
+ 					</div>
+ 				</a>
+ 			</li>
  			<li class="last-li">
  				<a href="/?p=<?php if ($user && $user->email) echo 'logout';
 								else  echo 'login'; ?>">
@@ -37,6 +46,7 @@
  					<?php } ?>
  				</a>
  			</li>
+
  		</ul>
  		<ul class='drop-down'>
  			<li class="drop-down-button">
@@ -73,6 +83,7 @@
  								<?php } ?>
  							</a>
  						</li>
+
  					</ul>
  				</div>
  			</li>
