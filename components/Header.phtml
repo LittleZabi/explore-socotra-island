@@ -13,22 +13,25 @@
  		</ul>
  		<ul class="header-icons ytill">
  			<li>
- 				<a href="/contact-us">ABOUT</a>
+ 				<a href="/?p=biodiversity">BIODIVERSITY</a>
+ 			</li>
+ 			<li>
+ 				<a href="/?p=weather">SOCOTRA WEATHER</a>
  			</li>
  			<li>
  				<a href="/?p=get-visa">GET VISA</a>
  			</li>
  			<li>
- 				<a href="/?p=biodiversity">BIODIVERSITY</a>
+ 				<a href="/contact-us">ABOUT</a>
  			</li>
  		</ul>
  		<ul class="ytill df df-c">
  			<li class="last-li">
- 				<a href="/?p=weather" id="header-weather">
- 					<img src="/static/media/icons/sun.png" id="header-img" alt="sun"/>
+ 				<a href="/?p=weather" class="header-weather">
+ 					<img src="/static/media/icons/sun.png" class="header-img" alt="sun" />
  					<div class="text">
- 						<span id="header-unit">°C</span>
- 						<span id="header-temp"></span>
+ 						<span class="header-unit">°C</span>
+ 						<span class="header-temp"></span>
  					</div>
  				</a>
  			</li>
@@ -70,6 +73,15 @@
  					</ul>
  					<ul class="drop-down-list xkkkk">
  						<li class="last-li">
+ 							<a href="/?p=weather" class="header-weather">
+ 								<img src="/static/media/icons/sun.png" class="header-img" alt="sun" />
+ 								<div class="text">
+ 									<span class="header-unit">°C</span>
+ 									<span class="header-temp"></span>
+ 								</div>
+ 							</a>
+ 						</li>
+ 						<li class="last-li">
  							<a href="/?p=<?php if ($user && $user->email) echo 'logout';
 											else  echo 'login'; ?>">
  								<?php
@@ -83,7 +95,6 @@
  								<?php } ?>
  							</a>
  						</li>
-
  					</ul>
  				</div>
  			</li>

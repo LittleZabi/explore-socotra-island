@@ -298,7 +298,7 @@ function determineWeatherConditions(conditionaly) {
   if (temperature > 15 && windSpeed > 20) {
     return "Cloudy";
   }
-  return "Rainy"
+  return "Rainy";
 }
 
 const setWeatherImage = (image, conditionaly = false) => {
@@ -322,13 +322,15 @@ const setWeatherImage = (image, conditionaly = false) => {
   image.src = imageSrc + src;
 };
 const setupWeatherOnHeader = () => {
-  const element = document.getElementById("header-weather");
-  const image = document.getElementById("header-img");
-  element.style.display = "flex";
-  document.getElementById("header-temp").innerHTML =
-    weather.current.temperature_2m.toFixed(0);
-  element.title = determineWeatherConditions(weather) + " Weather in Socotra";
-  setWeatherImage(image);
+  const element = document.querySelectorAll(".header-weather");
+  const image = document.querySelectorAll(".header-img");
+  element.forEach((e) => (e.style.display = "flex"));
+  document
+    .querySelectorAll(".header-temp")
+    .forEach((e) => (e.innerHTML = weather.current.temperature_2m.toFixed(0)));
+  element[0].title =
+    determineWeatherConditions(weather) + " Weather in Socotra";
+  image.forEach((e) => setWeatherImage(e));
 };
 const setupWeatherOnPage = () => {
   const weatherTemp = document.querySelector("#weather-page .temp h3");
@@ -414,7 +416,7 @@ const setupWeatherHourly = (startIndex) => {
   });
 };
 const setupWeather = () => {
-  if (document.getElementById("header-weather")) setupWeatherOnHeader();
+  if (document.querySelector(".header-weather")) setupWeatherOnHeader();
   if (document.getElementById("weather-page")) setupWeatherOnPage();
   if (document.getElementById("days")) setupWeatherDays();
   if (document.getElementById("hourly")) setupWeatherHourly(0);

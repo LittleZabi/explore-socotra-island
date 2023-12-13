@@ -24,16 +24,16 @@ header {
         height: 26px;
       }
     }
-    & #header-unit{
+    & .header-unit{
       font-size: 14px !important;
-      margin-left: 13px !important;
+      margin-left: 3px !important;
     }
-    & #header-weather{
+    & .header-weather{
      img{
       width: 35px;
       height: 35px;
     }
-    & #header-temp{
+    & .header-temp{
       font-size: 18px;
     }
   }
@@ -53,7 +53,7 @@ header {
     padding: 0 96px;
     transition: 300ms;
     position: relative;
-    & #header-weather{
+    & .header-weather{
       display: none;
       justify-content: center;
       align-items: center;
@@ -74,11 +74,11 @@ header {
           }
         }
       }
-      & #header-temp{
+      & .header-temp{
         font-size: 22px;
         font-weight: 400;
       }
-      & #header-unit{
+      & .header-unit{
         font-size: 17px;
         margin-top: 0px;
         margin-left: 5px;
@@ -89,6 +89,9 @@ header {
     }
     & .last-li {
       margin-right: 0px;
+      & a{
+        width: max-content;
+      }
       & img {
         width: 50px;
         height: 50px;
@@ -183,8 +186,15 @@ header {
       border-top: 1px solid #ffffff21;
       margin-top: 8px;
       padding: 5px 20px !important;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      & li{
+        width: max-content;
+      }
       & li a {
         padding: 4px 12px !important;
+        
       }
     }
 

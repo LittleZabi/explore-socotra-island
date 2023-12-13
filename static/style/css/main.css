@@ -661,8 +661,7 @@
 
 .form {
   padding: 13px 57px;
-  margin-left: auto;
-  margin: auto;
+  margin-left: 0px;
 }
 .form h2 {
   text-transform: uppercase;
@@ -827,10 +826,11 @@
 }
 .visa-view .form-modal {
   max-width: 900px;
-  margin: auto;
+  margin: 0 13px 0 0;
   background: #000000;
   backdrop-filter: blur(38px);
   border-radius: 9px;
+  margin: auto;
 }
 .visa-view .form-modal p {
   font-size: 16px;
@@ -1038,6 +1038,7 @@ main {
 
 footer {
   grid-area: footer;
+  z-index: 1;
 }
 
 .fade-out {
@@ -1350,15 +1351,15 @@ header.bg .drop-down .drop-svg {
   width: 26px;
   height: 26px;
 }
-header.bg #header-unit {
+header.bg .header-unit {
   font-size: 14px !important;
-  margin-left: 13px !important;
+  margin-left: 3px !important;
 }
-header.bg #header-weather img {
+header.bg .header-weather img {
   width: 35px;
   height: 35px;
 }
-header.bg #header-weather #header-temp {
+header.bg .header-weather .header-temp {
   font-size: 18px;
 }
 header .logo {
@@ -1376,19 +1377,19 @@ header nav {
   transition: 300ms;
   position: relative;
 }
-header nav #header-weather {
+header nav .header-weather {
   display: none;
   justify-content: center;
   align-items: center;
 }
-header nav #header-weather * {
+header nav .header-weather * {
   transition: 300ms;
 }
-header nav #header-weather img {
+header nav .header-weather img {
   width: 40px;
   height: 40px;
 }
-header nav #header-weather img.rotate {
+header nav .header-weather img.rotate {
   animation: rotate 10s linear forwards infinite;
 }
 @keyframes rotate {
@@ -1399,11 +1400,11 @@ header nav #header-weather img.rotate {
     transform: rotate(360deg);
   }
 }
-header nav #header-weather #header-temp {
+header nav .header-weather .header-temp {
   font-size: 22px;
   font-weight: 400;
 }
-header nav #header-weather #header-unit {
+header nav .header-weather .header-unit {
   font-size: 17px;
   margin-top: 0px;
   margin-left: 5px;
@@ -1413,6 +1414,9 @@ header nav #header-weather #header-unit {
 }
 header nav .last-li {
   margin-right: 0px;
+}
+header nav .last-li a {
+  width: max-content;
 }
 header nav .last-li img {
   width: 50px;
@@ -1502,6 +1506,12 @@ header nav ul svg {
   border-top: 1px solid rgba(255, 255, 255, 0.1294117647);
   margin-top: 8px;
   padding: 5px 20px !important;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+.drop-down .drop-down-list.xkkkk li {
+  width: max-content;
 }
 .drop-down .drop-down-list.xkkkk li a {
   padding: 4px 12px !important;
@@ -1592,16 +1602,38 @@ header nav ul svg {
     width: 220px;
   }
 }
+.weather-view .weather {
+  top: 130px;
+  left: 0;
+  right: 0;
+  margin-bottom: 161px;
+}
+.weather-view .top-view {
+  height: 100%;
+  width: 100%;
+  position: fixed !important;
+  top: 0;
+  border: 0;
+  bottom: 0;
+  margin: auto;
+}
+.weather-view .top-view .top-view-wrapper {
+  height: 100% !important;
+}
+
 .weather {
   margin: auto;
-  margin-top: 200px;
+  margin-bottom: 92px;
+  position: relative;
+  z-index: 1;
 }
 .weather .inner-weather {
   margin: auto;
-  background: #14121e;
+  background: rgba(0, 0, 0, 0.3411764706);
   width: 400px;
   padding: 44px 20px;
   border-radius: 8px;
+  backdrop-filter: blur(38px);
 }
 .weather .inner-weather .xkk {
   font-size: 36px;
@@ -1659,7 +1691,7 @@ header nav ul svg {
   cursor: pointer;
 }
 .weather .inner-weather #days section:hover {
-  background: linear-gradient(0deg, #180e42, #211d4b, #191436);
+  background: rgba(255, 255, 255, 0.0901960784);
 }
 .weather .inner-weather #days section img {
   width: 34px;
@@ -1686,7 +1718,7 @@ header nav ul svg {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: linear-gradient(0deg, #180e42, #211d4b, #191436);
+  background: rgba(255, 255, 255, 0.0901960784);
   padding: 5px 10px;
   border-radius: 4px;
   width: 90px;
@@ -1703,6 +1735,22 @@ header nav ul svg {
 .weather .inner-weather #hourly img {
   width: 30px;
   margin: 5px 0;
+}
+
+@media (max-width: 620px) {
+  .weather .inner-weather {
+    width: 320px;
+    padding: 34px 10px;
+  }
+  .weather .inner-weather #days {
+    overflow-x: scroll;
+  }
+}
+@media (max-width: 620px) {
+  .weather .inner-weather {
+    width: 303px;
+    padding: 34px 4px;
+  }
 }
 
 /*# sourceMappingURL=main.css.map */
