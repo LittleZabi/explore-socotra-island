@@ -7,7 +7,38 @@ function sanitizeInput($input)
     return $db->real_escape_string($input);
 }
 
-
+if (isset($_POST['hotel-res'])) {
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $hotel = $_POST['hotel'];
+    $check_in_date = $_POST['check_in'];
+    $check_out_date = $_POST['check_out_date'];
+    $guests = $_POST['guests'];
+    $special_request = isset($_POST['comment']) ? $_POST['comment'] : null;
+    $user_id = $_POST['user_id'];
+    $form_id = $_POST['form_id'];
+    if($form_id == ''){
+        $sql = "INSERT INTO hotel_res (user_id, name, email, hotel, check_in_date, check_out_date, guests, special_request)
+            VALUES ('$user_id', '$name', '$email', '$hotel', '$check_in_date', '$check_out_date', '$guests', '$special_request')";
+    }else{
+        $sql = "UPDATE hotel_res 
+        SET name = '$name', 
+            email = '$email', 
+            hotel = '$hotel', 
+            check_in_date = '$check_in_date', 
+            check_out_date = '$check_out_date', 
+            guests = '$guests', 
+            special_request = '$special_request'
+        WHERE id = $form_id";
+    }
+    if ($db->query($sql) === TRUE) {
+        echo json_encode(['id' => $db->insert_id, 'success' => true, 'message' => $form_id == '' ? 'Record inserted successfully' : 'Updated Successfully!']);
+        exit();
+    } else {
+        echo json_encode(['success' => false, 'message' => 'Error: ' . $sql . '<br>' . $conn->error]);
+        exit();
+    }
+}
 if (isset($_POST['save-visa'])) {
     $form_id = false;
     $formType = $_POST['form-type'];
@@ -88,7 +119,13 @@ if (isset($_POST['signup'])) {
         }
     }
     if (isset($_FILES['avatar']) && $_FILES['avatar']['error'] == UPLOAD_ERR_OK) {
-        $filename = getRandomChar(12, $options = array("numbers" => false, "symbols" => false, "seperator" => false, "lowercase" => true, "uppercase" => false));
+        $filename = getRandomChar(12, $options = array(
+            "numbers" => false,
+            "symbols" => false,
+            "seperator" => false,
+            "lowercase" => true,
+            "uppercase" => false
+        ));
         $extension = pathinfo(basename($_FILES['avatar']['name']), PATHINFO_EXTENSION);
         $path = '/static/media/users/' . $filename . '.' . $extension;
         if (!move_uploaded_file($_FILES['avatar']['tmp_name'], $roo_path . $path)) {
@@ -97,7 +134,9 @@ if (isset($_POST['signup'])) {
     }
     if ($name != '' && $email != '' && $password != '') {
         $password = md5($password);
-        $sql = "INSERT INTO users(name, email, password, avatar) VALUES('$name', '$email', '$password', '$path')";
+        $sql = "
+            INSERT INTO users(name, email, password, avatar)
+            VALUES('$name', '$email', '$password', '$path')";
         $query = $db->query($sql);
         if ($query) {
             $sql = "SELECT id FROM users WHERE email = '$email'";

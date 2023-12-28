@@ -1,0 +1,224 @@
+<div class="diversity-page">
+    <div class="page-size ytllx3">
+        <div class="full">
+            <h1>SOCOTRA HOTEL RESERVATIONS</h1>
+            <p>
+                Discover comfort and tranquility on the enchanting island of Socotra. Plan your stay effortlessly with our convenient hotel reservation service. Explore unique accommodations surrounded by the island's natural beauty. Reserve your spot today and embark on a memorable journey in Socotra.
+            </p>
+        </div>
+    </div>
+</div>
+<div class="sup-x">
+    <div class="page-size hotel-res">
+        <div class="left">
+            <?php if ($user == false) {
+                $_SESSION['static-message'] = "Please login then you can reserve a hotel in socotra";
+                include_once(ROOT_PATH . '/components/login-form.phtml');
+            } else { ?>
+                <div class="form-modal">
+                    <?php if (count($past_forms) > 0) { ?>
+                        <?php if (count($past_forms) > 1) { ?><h3 class="cb">Your previous requests</h3><?php } ?>
+                        <div class="past-forms">
+                            <?php
+                            foreach ($past_forms as $form) {
+                                if (isset($formView['id']) && $form['id'] === $formView['id']) {
+                                } else {
+                            ?>
+                                    <section>
+                                        <div>
+                                            <img src="/static/media/hotels/<?php echo $form['hotel'] === 'heathrow hotel' ? '/heathrow-1.jpg' : ($form['hotel'] === 'summerland hotel' ? '/summerland-7.jpg' : '/socotra-1.jpg'); ?>" alt="<?php echo $form['hotel']; ?>" />
+                                        </div>
+                                        <div>
+                                            <span class="name"><?php echo $form['hotel'] ?></span>
+                                            <span class="check_in">Check In: <script>
+                                                    document.write(life("<?php echo $form['check_in_date'] ?>").format("D MM"));
+                                                </script></span>
+                                            <span class="check_in">Check Out: <script>
+                                                    document.write(life("<?php echo $form['check_out_date'] ?>").format("D MM"));
+                                                </script></span>
+                                            <span class="created_at">Created at <script>
+                                                    document.write(life("<?php echo $form['created_at'] ?>").format("D MM YYYY"));
+                                                </script>
+                                                <div class="yell">
+                                                    <a href="/?p=hotel-reservation&id=<?php echo $form['id']; ?>"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
+                                                        </svg>
+                                                    </a>
+                                                    <button onclick="deleteForm('hotel_res', <?php echo $form['id']; ?>)"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                        </div>
+                                    </section>
+                            <?php }
+                            }
+                            ?>
+                        </div>
+                    <?php } ?>
+                    <div class="in-modal">
+                        <div class="form">
+                            <form autocomplete="on" id='hotel-res'>
+                                <?php if (isset($formView['id'])) { ?>
+                                    <h2>SUBMITED <script>
+                                            document.write(life("<?php echo $formView['created_at']; ?>").from())
+                                        </script>
+                                    </h2>
+                                    <a href="/?p=hotel-reservation" style="color:white;">Create New Request</a>
+                                <?php } else { ?>
+                                    <h2>Reserve a Hotel</h2>
+                                <?php } ?>
+                                <h3>Reserve now pay at hotel</h3>
+                                <p>
+                                    Experience Socotra's hospitality by reserving your stay effortlessly. Fill out the brief form below to secure your booking at Socotra's finest accommodations. Your dream getaway is just a few clicks away!
+                                </p>
+                                <input type="hidden" name="user_id" value="<?php echo $user->id; ?>">
+                                <input type="hidden" name="form_id" value="<?php echo isset($formView['id']) ? $formView['id'] : ''; ?>">
+                                <div class="flex-yxz">
+                                    <div class="a03x full-w">
+                                        <label for="name">Fullname</label>
+                                        <input type="text" id="name" value="<?php echo isset($formView['name']) ? $formView['name'] : ''; ?>" name="name" placeholder="E.g. john doe" />
+                                    </div>
+                                </div>
+                                <div class="flex-yxz">
+                                    <div class="a03x full-w">
+                                        <label for="email">Email Address</label>
+                                        <input type="email" value="<?php echo isset($formView['email']) ? $formView['email'] : ''; ?>" name="email" id="email" placeholder="E.g. johndoe@xyz.com" />
+                                    </div>
+                                </div>
+                                <div class="flex-yxz">
+                                    <div class="a03x full-w">
+                                        <label for="hotel">Select Hotel</label>
+                                        <select name='hotel'>
+                                            <option value="">--Select hotel--</option>
+                                            <option value="heathrow hotel" <?php echo isset($formView['hotel']) && $formView['hotel'] === 'heathrow hotel' ? 'selected' : ''; ?>>Heathrow Hotel</option>
+                                            <option value="summerland hotel" <?php echo isset($formView['hotel']) && $formView['hotel'] === 'summerland hotel' ? 'selected' : ''; ?>>Summerland Hotel</option>
+                                            <option value="Socotra Hiking" <?php echo isset($formView['hotel']) && $formView['hotel'] === 'Socotra Hiking' ? 'selected' : ''; ?>>Socotra Hiking</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="flex-yxz">
+                                    <div class="a03x">
+                                        <label for="check_in_date">Check-in Date</label>
+                                        <input type="date" name="check_in" id="check_in_date" value="<?php echo isset($formView['check_in_date']) ? $formView['check_in_date'] : ''; ?>" placeholder="" />
+                                    </div>
+                                    <div class="a03x">
+                                        <label for="check_out_date">Check-out Date</label>
+                                        <input type="date" name="check_out_date" id="check_out_date" value="<?php echo isset($formView['check_out_date']) ? $formView['check_out_date'] : ''; ?>" placeholder="" />
+                                    </div>
+                                </div>
+                                <div class="flex-yxz">
+                                    <div class="a03x">
+                                        <label for="guests">Number of Guests</label>
+                                        <input type="number" name="guests" id="guests" value="<?php echo isset($formView['guests']) ? $formView['guests'] : ''; ?>" placeholder="Number of guests" />
+                                    </div>
+                                </div>
+                                <div class="flex-yxz">
+                                    <div class="a03x full-w">
+                                        <label for="password">Special Request/Comments</label>
+                                        <textarea placeholder="Enter your request or comment" name="comment"><?php echo isset($formView['special_request']) ? $formView['special_request'] : ''; ?></textarea>
+                                    </div>
+                                </div>
+                                <div class="flex" style="flex-direction: column;">
+                                    <button type="button" class="login-btn btn" onclick="hotelResForm(this)">Submit Information</button>
+                                    <span id="alert-text"></span>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            <?php } ?>
+        </div>
+        <div class="right">
+            <section>
+                <div class="res-slide" id="res-slide-1">
+                    <div class="button">
+                        <button onclick="resSlideImage('res-slide-1', -1)">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                            </svg>
+                        </button>
+                        <button onclick="resSlideImage('res-slide-1', 1)"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                            </svg>
+                        </button>
+                    </div>
+                    <img class="active" src="/static/media/hotels/heathrow-1.jpg" alt="heathrow" />
+                    <img src="/static/media/hotels/heathrow-0.jpg" alt="heathrow" />
+                    <img src="/static/media/hotels/heathrow-2.jpg" alt="heathrow" />
+                    <img src="/static/media/hotels/heathrow-3.jpg" alt="heathrow" />
+                    <img src="/static/media/hotels/heathrow-4.jpg" alt="heathrow" />
+                </div>
+                <div class="text">
+                    <h1>Heathrow Hotel</h1>
+                    <span>Small Hotel</span>
+                    <span>#2 Best Value of 2 places to stay in Socotra Island</span>
+                    <p>Nestled amidst the captivating Red Dragon Blood Trees, Heathrow Hotel offers a cozy retreat in the heart of Socotra's natural wonders. Experience the charm of a small haven surrounded by breathtaking landscapes. Book your stay for an intimate and serene getaway at Heathrow Hotel.</p>
+                </div>
+            </section>
+            <section>
+                <div class="res-slide" id="res-slide-2">
+                    <div class="button">
+                        <button onclick="resSlideImage('res-slide-2', -1)">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                            </svg>
+                        </button>
+                        <button onclick="resSlideImage('res-slide-2', 1)"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                            </svg>
+                        </button>
+                    </div>
+                    <img class='active' src="/static/media/hotels/summerland-1.jpg" alt="heathrow" />
+                    <img src="/static/media/hotels/summerland-2.jpg" alt="heathrow" />
+                    <img src="/static/media/hotels/summerland-3.jpg" alt="heathrow" />
+                    <img src="/static/media/hotels/summerland-4.jpg" alt="heathrow" />
+                    <img src="/static/media/hotels/summerland-5.jpg" alt="heathrow" />
+                    <img src="/static/media/hotels/summerland-6.jpg" alt="heathrow" />
+                    <img src="/static/media/hotels/summerland-7.jpg" alt="heathrow" />
+                    <img src="/static/media/hotels/summerland-8.jpg" alt="heathrow" />
+                </div>
+                <div class="text">
+                    <h1>Summerland Hotel</h1>
+                    <span>Contact accommodation for availability.</span>
+                    <span>
+                        Small Hotel
+                    </span>
+                    <p>
+                        Nestled amidst the breathtaking landscapes of Socotra, the Socotra Hiking Cabin & Campground offers a unique stay for nature enthusiasts. Experience the charm of the island while enjoying the comforts of a rustic cabin. Whether you're an avid hiker or seeking a peaceful retreat, Socotra Hiking provides a cozy haven surrounded by the wonders of the great outdoors. Reserve your spot for an unforgettable camping experience.
+                    </p>
+                </div>
+
+            </section>
+            <section>
+                <div class="res-slide" id="res-slide-3">
+                    <div class="button">
+                        <button onclick="resSlideImage('res-slide-3', -1)">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                            </svg>
+                        </button>
+                        <button onclick="resSlideImage('res-slide-2', 1)"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                            </svg>
+                        </button>
+                    </div>
+                    <img class='active' src="/static/media/hotels/socotra-1.jpg" alt="heathrow" />
+                </div>
+                <div class="text">
+                    <h1>Socotra Hiking</h1>
+                    <span>Contact accommodation for availability.</span>
+                    <span>
+                        Cabin/Campground
+                    </span>
+                    <span>#2 Best Value of 2 places to stay in Socotra Island</span>
+                    <p>Nestled amidst the captivating Red Dragon Blood Trees, Heathrow Hotel offers a cozy retreat in the heart of Socotra's natural wonders. Experience the charm of a small haven surrounded by breathtaking landscapes. Book your stay for an intimate and serene getaway at Heathrow Hotel.</p>
+                </div>
+            </section>
+        </div>
+    </div>
+
+</div>
+<div>
+    <?php include_once(ROOT_PATH . "/components/links-view.phtml"); ?>
+</div>

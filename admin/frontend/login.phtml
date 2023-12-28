@@ -1,0 +1,31 @@
+<div class="form-modal">
+    <div class="in-modal">
+        <div class="form" style="max-width: 400px">
+            <form autocomplete="on" method="POST">
+                <h2>ADMIN LOGIN</h2>
+                <p>
+                    Please enter your username and password to login in admin so you can add, remove, update and manage website.
+                </p>
+                <input type="hidden" name="admin-login" value="1">
+                <div class="flex-yxz">
+                    <div class="a03x full-w">
+                        <label for="username">Enter your username</label>
+                        <input type="text" id="username" name="username" placeholder="E.g. admin" />
+                    </div>
+                </div>
+                <div class="flex-yxz">
+                    <div class="a03x full-w">
+                        <label for="password">Enter your password</label>
+                        <input type="password" name="password" id="password" placeholder="Enter password" />
+                    </div>
+                </div>
+                <div>
+                </div>
+                <div class="flex" style="flex-direction: column;">
+                    <button type="submit" class="login-btn btn">Login</button>
+                    <?php if ($message) { ?><span class="message alert"><?php echo $message; ?></span><?php } ?>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

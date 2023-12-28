@@ -1,16 +1,18 @@
 <?php
+session_start();
 define('ROOT_PATH', __DIR__);
 $title = 'HOME';
-include_once('./lib/global-vars.php');
 include_once('./lib/__functions.php');
 include_once('./lib/database.php');
 
-$b = __DIR__ . '/pages/backend/' . getPage() . '-backend.php';
+$current_page = getPage();
+include_once('./lib/global-vars.php');
+$b = __DIR__ . '/pages/backend/' . $current_page . '-backend.php';
 if (is_file($b)) include_once($b);
 
 include_once(__DIR__ . '/components/Head.phtml');
 ?>
-<div id="main-container">
+<div id="main-container" class="">
     <?php
     include_once(__DIR__ . '/components/Header.phtml');
     ?>

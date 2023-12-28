@@ -1,0 +1,34 @@
+<div class="diversity-page places-view">
+    <div class="page-size ytllx3">
+        <div class="full">
+            <h1>SOCOTRA DISCOVERED PLACES WHERE HEAVEN IS EXIST</h1>
+            <p>In the heart of the Arabian Sea, Socotra Island emerges as a living testament to the extraordinary diversity woven into the fabric of Earth's ecosystems. Recognized as a UNESCO World Heritage Site, Socotra boasts a biodiversity so unique and captivating that it has earned the moniker "Galapagos of the Indian Ocean."</p>
+        </div>
+    </div>
+    
+    <div class='page-size places-cont'>
+        <?php foreach ($places as $place) {
+        ?>
+            <section>
+                <div>
+                    <h2><?php echo $place['name']; ?></h2>
+                    <span><?php echo date('M d Y', strtotime($place['createdAt'])); ?></span>
+                    <p><?php echo $place['description']; ?></p>
+                </div>
+                <div class="images">
+                    <?php foreach (explode(',', $place['images'] ) as $image) {
+                    ?>
+                       <a href="<?php echo $image; ?>" target="_blank"> <img src="<?php echo $image; ?>" alt=""></a>
+                    <?php
+                    }
+                    ?>
+                </div>
+            </section>
+        <?php
+        }
+        ?>
+    </div>
+</div>
+<div class="page-size" style="margin:auto">
+    <?php include_once(ROOT_PATH . "/components/links-view.phtml"); ?>
+</div>

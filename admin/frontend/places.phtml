@@ -1,0 +1,106 @@
+<div class="wrapper fade-in">
+    <h2>MANAGE PLACES</h2>
+    <p>You can remove places. please keep in mind any action is not reversable so take any action carefully.</p>
+    <div>
+        <br>
+        <details style="cursor:pointer;">
+            <summary>
+                Click here to add new place.
+            </summary>
+            <div class="form-modal fade-in">
+                <div class="in-modal">
+                    <div class="form" style="padding: 13px 5px">
+                        <form method="POST" enctype="multipart/form-data">
+                            <h2 style="padding: 0">Add new place</h2>
+                            <p>
+                                Add new place of socotra island please provide name, description, and Images of the place.
+                            </p>
+                            <div class="flex-yxz">
+                                <div class="a03x full-w">
+                                    <label for="name">Enter name of the place</label>
+                                    <input type="text" id="name" name="name" placeholder="E.g. Qalansiyah" />
+                                </div>
+                            </div>
+                            <div class="flex-yxz">
+                                <div class="a03x full-w">
+                                    <label for="desc">Enter about this place</label>
+                                    <textarea name="desc" id="desc" placeholder="Enter about the place"></textarea>
+                                </div>
+                            </div>
+                            <input type="hidden" name="save-form" value="1">
+                            <div class="flex-yxz">
+                                <div class="a03x full-w img-plc">
+                                    <label for="images">SELECT IMAGES OF PLACE</label>
+                                    <input type="file" multiple accept=".png, .jpg, .jpeg" onchange="handleImage(this, multiple=1)" id="image_input" name="images[]" required />
+                                    <div class="image-placeholder admin-image-x8" onclick="handleImgPlaceholder()" id="file-placeholder">
+                                        <div style='width: 150px'><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+                                            </svg>
+                                            <span>click to select image</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="flex" style="flex-direction: column;">
+                                <button type="submit" value="super" class="login-btn btn">Save</button>
+                                <br>
+                                <?php if (isset($_SESSION['message'])) { ?>
+                                    <span class="message <?php echo $_SESSION['message']['variant']; ?>"><?php echo $_SESSION['message']['text']; ?></span>
+                                <?php };
+                                unset($_SESSION['message']); ?>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </details>
+    </div>
+    <table class="admin-table-view">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>ID</th>
+                <th>IMAGE</th>
+                <th>NAME</th>
+                <th>ACTIVE</th>
+                <th>CREATED AT</th>
+                <th>ACTION</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($places as $place) { ?>
+                <tr>
+                    <td><?php echo ++$i; ?></td>
+                    <td><?php echo $place["id"]; ?></td>
+                    <td class="image">
+                        <img src="<?php echo explode(',', $place['images'])[0]; ?>" />
+                    </td>
+                    <td><?php echo $place["name"]; ?></td>
+                    <td><?php echo $place["active"] == 1 ? 'active' : 'deactive'; ?></td>
+                    <td><?php echo date('M d Y', strtotime($place["createdAt"])); ?></td>
+                    <td>
+                        <button class="btn white-bg black-color delete-btn" onclick="deleteItem(<?php echo $place['id']; ?>, 'places')">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+                            </svg>
+                        </button>
+                    </td>
+                </tr>
+            <?php } ?>
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>#</th>
+                <th>ID</th>
+                <th>IMAGE</th>
+                <th>NAME</th>
+                <th>ACTIVE</th>
+                <th>CREATED AT</th>
+                <th>ACTION</th>
+            </tr>
+        </tfoot>
+    </table>
+</div>

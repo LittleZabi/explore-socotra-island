@@ -4,7 +4,7 @@
 		$user = json_decode($_COOKIE['user']);
 	}
 	?>
- <header id="header">
+ <header class="fade-in" id="header">
  	<nav class="page-size df-ac">
  		<ul class="ck">
  			<a href="/" class="logo">
@@ -13,16 +13,22 @@
  		</ul>
  		<ul class="header-icons ytill">
  			<li>
- 				<a href="/?p=biodiversity">BIODIVERSITY</a>
+ 				<a class="<?php echo $current_page === 'biodiversity' ? 'active' : '' ?>" href="/?p=biodiversity">BIODIVERSITY</a>
+ 			</li>
+			<li>
+ 				<a class="<?php echo $current_page === 'places' ? 'active' : '' ?>" href="/?p=places">PLACES</a>
  			</li>
  			<li>
- 				<a href="/?p=weather">SOCOTRA WEATHER</a>
+ 				<a class="<?php echo $current_page === 'weather' ? 'active' : '' ?>" href="/?p=weather">SOCOTRA WEATHER</a>
  			</li>
  			<li>
- 				<a href="/?p=get-visa">GET VISA</a>
+ 				<a class="<?php echo $current_page === 'get-visa' ? 'active' : '' ?>" href="/?p=get-visa">GET VISA</a>
  			</li>
  			<li>
- 				<a href="/?p=about">ABOUT</a>
+ 				<a class="<?php echo $current_page === 'hotel-reservation' ? 'active' : '' ?>" href="/?p=hotel-reservation">HOTEL RESERVATION</a>
+ 			</li>
+ 			<li>
+ 				<a class="<?php echo $current_page === 'about' ? 'active' : '' ?>" href="/?p=about">ABOUT</a>
  			</li>
  		</ul>
  		<ul class="ytill df df-c">
@@ -65,11 +71,17 @@
  							<a href="/?p=biodiversity">BIODIVERSITY</a>
  						</li>
  						<li>
+ 							<a href="/?p=places">PLACES</a>
+ 						</li>
+ 						<li>
  							<a href="/?p=weather">SOCOTRA WEATHER</a>
  						</li>
 
  						<li>
  							<a href="/?p=get-visa">GET VISA</a>
+ 						</li>
+ 						<li>
+ 							<a href="/?p=hotel-reservation">HOTEL RESERVATION</a>
  						</li>
  						<li>
  							<a href="/?p=about">ABOUT</a>

@@ -69,5 +69,5 @@
     url("../fonts/berlin-demi.woff") format("woff"),
     url("../fonts/berlin-demi.ttf") format("ttf");
 }
-$font: 'barlow_cond';
-$sec-font: 'berlin';
+$font: 'barlow_cond', 'consolas', 'system-ui';
+$sec-font: 'berlin', 'consolas', 'system-ui';

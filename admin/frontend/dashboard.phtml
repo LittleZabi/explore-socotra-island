@@ -1,0 +1,116 @@
+<div class="wrapper">
+    <h2>Admin Dashboard</h2>
+    <p>You can see analytics of the website here. </p>
+    <div class="dash-counts">
+        <section>
+            <span>Users</span>
+            <span><?php echo $counts['users']; ?></span>
+        </section>
+        <section>
+            <span>Places</span>
+            <span><?php echo $counts['places']; ?></span>
+        </section>
+        <section>
+            <span>Visa's</span>
+            <span><?php echo $counts['visa']; ?></span>
+        </section>
+        <section>
+            <span>Hotel Reservation</span>
+            <span><?php echo $counts['hotel']; ?></span>
+        </section>
+    </div>
+    <div class="most-recent">
+        <div>
+            <h3>Recent Users</h3>
+            <table class="admin-table-view">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>FULLNAME</th>
+                        <th>EMAIL</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    foreach ($items['users'] as $users) {
+                    ?>
+                        <tr>
+                            <td><?php echo $users['id']; ?></td>
+                            <td><?php echo $users['name']; ?></td>
+                            <td><?php echo $users['email']; ?></td>
+                        </tr>
+                    <?php } ?>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th>ID</th>
+                        <th>FULLNAME</th>
+                        <th>EMAIL</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <div>
+            <h3>Recent Visa Forms</h3>
+            <table class="admin-table-view">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>FULLNAME</th>
+                        <th>Created At</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+
+                    foreach ($items['visa'] as $users) {
+                    ?>
+                        <tr>
+                            <td><?php echo $users['id']; ?></td>
+                            <td><?php echo $users['name']; ?></td>
+                            <td><?php echo date('M d Y', strtotime($users['createdAt'])); ?></td>
+                        </tr>
+                    <?php } ?>
+                </tbody>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>FULLNAME</th>
+                        <th>Created At</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        <div>
+            <h3>Recent Hotel Reservation</h3>
+            <table class="admin-table-view">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>FULLNAME</th>
+                        <th>HOTEL</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+
+                    foreach ($items['hotel'] as $users) {
+                    ?>
+                        <tr>
+                            <td><?php echo $users['id']; ?></td>
+                            <td><?php echo $users['name']; ?></td>
+                            <td><?php echo $users['hotel']; ?></td>
+                        </tr>
+                    <?php } ?>
+                </tbody>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>FULLNAME</th>
+                        <th>HOTEL</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,3 +1,9 @@
+const deleteItem = (id, table) => {
+  const c = confirm("You are realy want to delete this item");
+  if (c) {
+    window.location.href = window.location.href + "&d=" + id + "&t=" + table;
+  }
+};
 let weather = {};
 const Cookies = {
   remove: (name) => {
@@ -198,7 +204,7 @@ const submitSignUp = () => {
     });
   }
 };
-const createAlert = (id, message, variant) => {
+const createAlert = (id, message, variant, time = 5000) => {
   let currElement = id;
   if (typeof id === "string") currElement = document.getElementById(id);
   const span = document.createElement("span");
@@ -210,14 +216,29 @@ const createAlert = (id, message, variant) => {
   currElement.focus();
   setTimeout(() => {
     span.remove();
-  }, 5000);
+  }, time);
   return 1;
 };
-const handleImage = (element) => {
+const handleImage = (element, multiple = 0) => {
+  multiple = 1;
+  // if (multiple) {
+  // for(let image of element.files){
+
+  // console.log(image)
+  // }
+  // element.files.forEach((e) => {
+  //   console.log(e);
+  // });
+  // } else {
   if (element.files && element.files[0]) {
-    const file = element.files[0];
+    let files = [];
+    if (multiple) {
+      files = element.files;
+    } else {
+      files = element.files[0];
+    }
     let allowedTypes = ["image/png", "image/jpeg", "image/jpg"];
-    if (!allowedTypes.includes(file.type)) {
+    if (!multiple && !allowedTypes.includes(files.type)) {
       createAlert(
         element,
         "only png, jpg format are support. please select image of these files format.",
@@ -225,7 +246,7 @@ const handleImage = (element) => {
       );
       return 0;
     }
-    if (file.size > 5000000) {
+    if (!multiple && files.size > 5000000) {
       createAlert(
         element,
         "Image size is greater then 5MB please select image less then 5MB.",
@@ -233,16 +254,37 @@ const handleImage = (element) => {
       );
       return 0;
     }
+    const holder = document.getElementById("file-placeholder");
+
     const reader = new FileReader();
     reader.onload = (e) => {
-      document.getElementById(
-        "file-placeholder"
-      ).innerHTML = `<img src='${e.target.result}' alt='picture'/>`;
+      holder.innerHTML = `<img src='${e.target.result}' alt='picture'/>`;
     };
-    reader.readAsDataURL(file);
+    if (multiple) {
+      let i = 0;
+      for (let img of files) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          if (i == 0)
+            holder.innerHTML = `<img src='${e.target.result}' alt='picture'/>`;
+          else
+            holder.innerHTML += `<img src='${e.target.result}' alt='picture'/>`;
+          i++;
+        };
+        reader.readAsDataURL(img);
+      }
+    } else {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        holder.innerHTML = `<img src='${e.target.result}' alt='picture'/>`;
+      };
+      reader.readAsDataURL(files);
+    }
   }
+  // }
 };
-const handleImgPlaceholder = () => document.getElementById("avatar").click();
+const handleImgPlaceholder = () =>
+  document.getElementById("image_input").click();
 const IntersectionOptions = {
   root: null,
   rootMargin: "-140px 0px -140px 0px",
@@ -436,6 +478,72 @@ const getWeather = async () => {
       .catch((e) => console.error(e));
   }
   setupWeather(weather);
+};
+const imageRegistry = {};
+const resSlideImage = (id, num) => {
+  const images = document.querySelectorAll("#" + id + " img");
+  images.forEach((e) => e.classList.remove("active"));
+  if (imageRegistry[id]) {
+    imageRegistry[id] =
+      num === -1
+        ? imageRegistry[id] >= 1
+          ? imageRegistry[id] - 1
+          : 0
+        : imageRegistry[id] >= images.length - 1
+        ? 0
+        : imageRegistry[id] + 1;
+  } else {
+    imageRegistry[id] = num === -1 ? images.length - 1 : 1;
+  }
+
+  images[imageRegistry[id]].classList.add("active");
+};
+const deleteForm = async (table, id) => {
+  await fetch(`/api/delete-data.php?deleteForm=1&id=${id}&table=${table}`)
+    .then((res) => res.text())
+    .then((res) => (document.location.href = window.location.href))
+    .catch((e) => console.error(e));
+};
+const hotelResForm = (self) => {
+  const form = document.getElementById("hotel-res");
+  const fields = [
+    "name",
+    "email",
+    "hotel",
+    "check_in_date",
+    "check_out_date",
+    "guests",
+  ];
+  let allFieldsFilled = true;
+  fields.forEach((field) => {
+    const inputElement = form[field];
+    if (inputElement.value.trim() === "") {
+      createAlert(
+        inputElement,
+        `Please fill the ${field.replace("_", " ")} field`,
+        "alert"
+      );
+      allFieldsFilled = false;
+    }
+  });
+  if (allFieldsFilled) {
+    const formData = new FormData(form);
+    formData.append("hotel-res", 1);
+    fetch("/api/set-data.php", {
+      method: "POST",
+      body: formData,
+    })
+      .then((response) => response.json())
+      .then((result) => {
+        if (result.success) {
+          createAlert("alert-text", result.message, "success", (time = 100000));
+        }
+        if (form["form_id"].value === "") form["form_id"].value = result.id;
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  }
 };
 window.addEventListener("DOMContentLoaded", async (e) => {
   await getWeather();
