@@ -39,7 +39,7 @@ header {
   }
   }
   & .logo {
-    margin-left: 18px;
+    margin-left: 0px;
   
     & img {
       width: 150px;
@@ -93,8 +93,8 @@ header {
         width: max-content;
       }
       & img {
-        width: 50px;
-        height: 50px;
+        width: 42px;
+        height: 42px;
         border-radius: 50%;
         object-fit: cover;
       }
@@ -108,8 +108,8 @@ header {
         list-style: none;
       }
       & a {
-        margin: 0;
-        padding: 8px 12px;
+        margin: 0 2px;
+        padding: 8px 6px;
         font-weight: 500;
         font-size: 16px;
         color: white;

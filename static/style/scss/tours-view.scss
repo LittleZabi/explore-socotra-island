@@ -1,0 +1,144 @@
+.tours-view {
+  margin: auto;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  background: $bg-color;
+  padding-top: 40px;
+  padding-bottom: 200px;
+  padding-left: 10px;
+  & .xoa table{
+    width: 100%;
+    & td{
+      border-bottom: 1px solid rgb(44, 44, 44);
+      padding: 10px;
+    }
+  }
+  & .form {
+    padding: 13px 10px;
+    & .xo {
+      margin-top: 20px;
+    }
+    & .xoa {
+      margin-top: 20px;
+      width: 200px;
+      & div {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        margin-top: 8px;
+        padding: 5px 0;
+        border-bottom: 1px solid #80808026;
+        margin-bottom: 20px;
+      }
+    }
+  }
+  & svg {
+    width: 30px;
+    margin-right: 12px;
+  }
+  & h2 {
+    font-size: 38px;
+    display: block;
+    text-transform: uppercase;
+  }
+  & p {
+    display: block;
+    font-size: 24px;
+    text-transform: capitalize;
+  }
+  & h2,
+  & p {
+    display: flex;
+    align-items: center;
+  }
+  & .date-xk3 {
+    //margin-left: 20px;
+    margin-top: 8px;
+    & h3 {
+      margin-top: 15px;
+    }
+    & .date-xk {
+      font-size: 32px;
+      text-transform: uppercase;
+    }
+  }
+  .datepicker-input {
+    display: block;
+    width: 300px;
+    height: 50px;
+    font-size: 28px;
+    text-transform: uppercase;
+    padding: 0px 15px;
+    border-radius: 5px;
+    border: none;
+  }
+  & .tour-left-view,
+  & .tour-right-view {
+    padding: 20px;
+  }
+  & .tour-left-view {
+    width: 58%;
+    & h1 {
+      font-size: 48px;
+    }
+    & .desc {
+      font-size: 22px;
+      margin-top: 30px;
+    }
+    & .dur {
+      font-size: 28px;
+    }
+    & .list-viewx93 {
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      & section {
+        margin: 0 40px;
+        max-width: 210px;
+        & span {
+          font-size: 22px;
+        }
+        & ul {
+          margin: 0;
+          margin-top: 8px;
+          & li {
+            text-transform: capitalize;
+          }
+        }
+      }
+    }
+  }
+  & .tour-right-view {
+    width: 40%;
+    border-left: 1px solid rgb(44, 44, 44);
+  }
+}
+
+@media (max-width: 992px) {
+  .tours-view{
+    flex-direction: column;
+    align-items: center;
+    & .tour-left-view, & .tour-right-view{
+      width: 88%;
+    }
+    & .tour-right-view{
+      border-left: none;
+      border-top:1px solid rgb(44, 44, 44);
+
+    }
+    & .tour-left-view .list-viewx93 section{
+      margin: 10px 13px;
+    }
+  }
+  
+}
+@media (max-width: 620px) {
+  .tours-view .datepicker-input{
+    width: 87%;
+  }
+  #top-view .top-view-wrapper .top-view-text a.btn{
+    margin-top: 15px;
+  }
+}

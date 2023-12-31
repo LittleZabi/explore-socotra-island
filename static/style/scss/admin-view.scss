@@ -154,10 +154,23 @@
         width: 52px;
       }
     }
-    & button {
+    & button , & a{
       padding: 4px 18px !important;
       & svg {
         width: 23px;
+      }
+    }
+    & a{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    &.button-x3{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      & *{
+        margin: 5px 3px;
       }
     }
   }

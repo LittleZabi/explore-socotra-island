@@ -33,6 +33,7 @@ function getItems($table, $fields = [], $limit = 0)
     $query = $db->query($sql);
     if ($query->num_rows > 0)
         return $query->fetch_all(MYSQLI_ASSOC);
+    return [];
 }
 function getDataCounts($table)
 {

@@ -1,0 +1,203 @@
+<div class="wrapper fade-in">
+    <h2>MANAGE TOURS</h2>
+    <p>You can remove tours. please keep in mind any action is not reversable so take any action carefully.
+        <br>
+        <?php if ($formData['title'] != '') { ?>
+            <a style="color:white;" href="/admin.php?p=tours">CLICK HERE TO ADD NEW</a>
+        <?php } ?>
+    </p>
+
+    <div>
+        <br>
+        <details style="cursor:pointer;" <?php if ($formData['title'] != '') {
+                                                echo 'open';
+                                            }; ?>>
+            <summary>
+                Click here to add new tour place.
+            </summary>
+            <div class="form-modal fade-in">
+                <div class="in-modal">
+                    <div class="form" style="padding: 13px 5px">
+                        <form method="POST" enctype="multipart/form-data">
+                            <?php if ($formData['title'] != '') { ?>
+                                <h2 style="padding: 0">Edit <?php echo $formData['title']; ?>
+                                    <br>
+                                </h2>
+                            <?php } else { ?>
+                                <h2 style="padding: 0">Add new tour</h2>
+                            <?php } ?>
+                            <?php if ($formData['title'] != '') { ?>
+                                <p>
+                                    Please edit tour carefully.
+                                </p>
+
+                            <?php } else { ?>
+                                <p>
+                                    Add a new tour of Socotra Island, please provide title, description, duration, itinerary, what's included, what's not included, and images of the tour.
+                                </p>
+                            <?php } ?>
+
+                            <div class="flex-yxz">
+                                <div class="a03x full-w">
+                                    <label for="tour">Enter title of the tour</label>
+                                    <input type="text" id="tour" name="title1" placeholder="E.g. Discover the Majestic Cave in Qalansiya" value="<?php echo $formData['title']; ?>" />
+                                </div>
+                            </div>
+                            <div class="flex-yxz">
+                                <div class="a03x full-w">
+                                    <label for="location">Enter tour location.</label>
+                                    <input type="text" id="location" name="location" placeholder="E.g. Qalansiya" value="<?php echo $formData['location']; ?>" />
+                                </div>
+                            </div>
+                            <div class="flex-yxz">
+                                <div class="a03x full-w">
+                                    <label for="desc">Enter text about the tour</label>
+                                    <textarea name="desc" id="desc" placeholder="Enter about the place"><?php echo $formData['desc']; ?></textarea>
+                                </div>
+                            </div>
+                            <div class="flex-yxz">
+                                <div class="a03x">
+                                    <label for="price">Enter Price of the tour</label>
+                                    <input type="number" id="price" name="price" placeholder="E.g. 530 in USD" value="<?php echo $formData['price']; ?>" required />
+                                </div>
+                                <div class="a03x">
+                                    <label for="members">Enter number of members at this price.</label>
+                                    <input type="text" id="members" name="members" placeholder="E.g. Per group of 1 ~ 5" value="<?php echo $formData['members']; ?>" />
+                                </div>
+                            </div>
+                            <div class="flex-yxz">
+                                <div class="a03x full-w">
+                                    <label for="duration">Enter duration of the tour</label>
+                                    <input name="duration" id="duration" placeholder="E.g. 10 Hours including pick and drop." value="<?php echo $formData['duration']; ?>" />
+                                </div>
+                            </div>
+                            <div class="flex-yxz">
+                                <div class="a03x full-w">
+                                    <label for="itinary">Enter Itinerary<small>(Separate with a comma (,)). </small></label>
+                                    <textarea name="itinary" id="itinary" placeholder="E.g. Oishi Park, Qalansiya beach, Memorial Park, Lunch."><?php echo $formData['itinary']; ?></textarea>
+                                </div>
+                            </div>
+                            <div class="flex-yxz">
+                                <div class="a03x full-w">
+                                    <label for="included">Enter what's included <small>(Separate with a comma (,)).</small></label>
+                                    <textarea name="included" id="included" placeholder="E.g. English guided tour service, Petrol/Gas, Highway Tolls, parking Fee."><?php echo $formData['included']; ?></textarea>
+                                </div>
+                            </div>
+                            <div class="flex-yxz">
+                                <div class="a03x full-w">
+                                    <label for="not_included">Enter what's not included <small>(Separate with a comma (,)).</small></label>
+                                    <textarea name="not_included" id="not_included" placeholder="E.g. Lunch, Ticket Activity."><?php echo $formData['not_included']; ?></textarea>
+                                </div>
+                            </div>
+                            <input type="hidden" name="prev_image" value="<?php echo $formData['image']; ?>" />
+                            <?php if ($formData['title'] != '') { ?>
+                                <input type="hidden" name="udpate-form" value="1">
+                            <?php } else { ?>
+                                <input type="hidden" name="save-form" value="1">
+                            <?php } ?>
+                            <div class="flex-yxz">
+                                <div class="a03x full-w img-plc">
+                                    <label for="image">SELECT IMAGE OF TOUR PLACE</label>
+                                    <input type="file" accept=".png, .jpg, .jpeg" onchange="handleImage(this)" id="image_input" name="image" <?php if ($formData['title'] == '') {
+                                                                                                                                                    echo 'required';
+                                                                                                                                                }; ?> />
+                                    <div class="image-placeholder admin-image-x8" onclick="handleImgPlaceholder()" id="file-placeholder">
+                                        <div style='width: 150px'>
+                                            <?php if ($formData['title'] != '') { ?>
+                                                <img src="<?php echo $formData['image']; ?>" alt="hello" />
+                                            <?php } else { ?>
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+                                                </svg>
+                                                <span>click to select image</span>
+                                            <?php } ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="flex" style="flex-direction: column;">
+                                <button type="submit" value="" class="login-btn btn">
+                                    <?php if ($formData['title'] != '') { ?>
+                                        Update Tour
+                                    <?php } else { ?>
+                                        Save
+                                    <?php } ?>
+                                </button>
+                                <br>
+                                <?php if (isset($_SESSION['message'])) { ?>
+                                    <span class="message <?php echo $_SESSION['message']['variant']; ?>"><?php echo $_SESSION['message']['text']; ?></span>
+                                <?php };
+                                unset($_SESSION['message']); ?>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </details>
+    </div>
+    <table class="admin-table-view">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>ID</th>
+                <th>IMAGE</th>
+                <th>TITLE</th>
+                <th>LOCATION</th>
+                <th>PRICE</th>
+                <th>MEMBERS</th>
+                <th>DESCRIPTION</th>
+                <th>CRREATED AT</th>
+                <th>ACTION</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($places as $place) { ?>
+                <tr>
+                    <td><?php echo ++$i; ?></td>
+                    <td><?php echo $place["id"]; ?></td>
+                    <td class="image">
+                        <img src="<?php echo $place['image']; ?>" />
+                    </td>
+                    <td><?php echo $place["title"]; ?></td>
+                    <td><?php echo $place["location"]; ?></td>
+                    <td><?php echo $place["price"]; ?></td>
+                    <td><?php echo $place["members"]; ?></td>
+                    <td><?php echo substr($place['description'], 0, 100);
+                        if (strlen($place['description']) >= 100) {
+                            echo '...';
+                        }; ?></td>
+                    <td><?php echo date('M d Y', strtotime($place["createdAt"])); ?></td>
+                    <td class="df button-x3">
+                        <button class="btn white-bg black-color delete-btn" onclick="deleteItem(<?php echo $place['id']; ?>, 'tours')">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+                            </svg>
+                        </button>
+                        <a class="btn white-bg black-color delete-btn" href="/admin.php?p=tours&edit_id=<?php echo $place['id']; ?>">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
+                            </svg>
+                        </a>
+                    </td>
+                </tr>
+            <?php } ?>
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>#</th>
+                <th>ID</th>
+                <th>IMAGE</th>
+                <th>TITLE</th>
+                <th>LOCATION</th>
+                <th>PRICE</th>
+                <th>MEMBERS</th>
+                <th>DESCRIPTION</th>
+                <th>CRREATED AT</th>
+                <th>ACTION</th>
+            </tr>
+        </tfoot>
+    </table>
+</div>

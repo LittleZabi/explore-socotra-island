@@ -20,7 +20,12 @@ include_once(__DIR__ . '/components/Head.phtml');
         <?php
         $p = __DIR__ . '/pages/frontend/' . getPage() . '.phtml';
         if (is_file($p)) include_once($p);
-        else include_once(__DIR__ . '/pages/404.php');
+        else {
+            echo 'page => ';
+            echo $p;
+            echo '<br/>';
+            include_once(__DIR__ . '/404.php');
+        }
         ?>
     </main>
     <?php

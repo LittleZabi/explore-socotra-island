@@ -1,0 +1,164 @@
+<div class="top-view fade-in" id="top-view">
+    <div class="top-view-wrapper df df-c">
+        <div class="top-view-slide df df-c">
+            <div class="image">
+                <img src="<?php echo $post['image']; ?>" alt="abc" />
+                <div class="top-layer"></div>
+            </div>
+            <div class="page-size top-view-text df df-dc">
+                <h1><?php echo $post['title']; ?></h1>
+                <p>
+                    Don't miss this opertunity. just book now this tour by filling below form.
+                </p>
+                <a class="btn white-bg black-color" href="/?p=tours">Explore More Tours</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="page-size tours-view fade-in">
+    <div class="tour-left-view fade-in">
+        <h1><?php echo $post['title']; ?></h1>
+        <div>
+            <p class="desc"><?php echo $post['description']; ?></p>
+            <p class="dur"><?php echo $post['duration']; ?></p>
+        </div>
+        <div class="list-viewx93">
+            <section>
+                <span>ITINERARY</span>
+                <ul>
+                    <?php foreach (explode(',', $post['itinerary']) as $t) { ?>
+                        <li><?php echo $t; ?></li>
+                    <?php } ?>
+                </ul>
+            </section>
+            <section>
+                <span>INCLUDED</span>
+                <ul>
+                    <?php foreach (explode(',', $post['included']) as $t) { ?>
+                        <li><?php echo $t; ?></li>
+                    <?php } ?>
+                </ul>
+            </section>
+            <section>
+                <span>NOT INCLUDED</span>
+                <ul>
+                    <?php foreach (explode(',', $post['not_included']) as $t) { ?>
+                        <li><?php echo $t; ?></li>
+                    <?php } ?>
+                </ul>
+            </section>
+        </div>
+    </div>
+    <div class="tour-right-view fade-in">
+        <h2>Explore <?php echo $post['location']; ?> in just <?php echo $post['price']; ?>$</h2>
+        <p>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z" />
+            </svg>
+            <?php echo $post['members']; ?>
+        </p>
+        <p>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
+            </svg>
+
+            <?php echo $post['location']; ?>
+        </p>
+        <?php if (count($booked_tours) > 0) { ?>
+            <h2>Already Booked</h2>
+            <div class="xoa">
+                <table> 
+                    <tr>
+                        <td>Subtotal</td>
+                        <td><?php echo $post['price']; ?>$</td>
+                    </tr>
+                    <tr>
+                        <td>Total Due</td>
+                        <td><?php echo $post['price']; ?>$</td>
+                    </tr>
+                    <tr>
+                        <td>Phone</td>
+                        <td><?php echo $booked_tours['phone']; ?></td>
+                    </tr>
+                    <tr>
+                        <td>Members</td>
+                        <td><?php echo $booked_tours['members']; ?></td>
+                    </tr>
+                </table>
+                <br>
+                <br>
+                <a href="/?p=book-tour&cancel=<?php echo $booked_tours['id']; ?>&id=<?php echo $post['id']; ?>" class="btn white-bg black-color">Cancel Booking</a>
+            </div>
+        <?php } else { ?>
+            <div>
+                <div class="date-xk3">
+                    <input type="date" onchange="toggleDatePicker(this)" class="datepicker-input">
+                    <h3 class="date-xk">
+                        DATE <span id='date-plc'><?php echo date(' d/m/Y '); ?></span>
+                    </h3>
+                    <h3 class="date-xk">
+                        TIME 15:00 PM
+                    </h3>
+                </div>
+                <div class="form-modal">
+                    <div class="in-modal">
+                        <div class="form">
+                            <form autocomplete="on" method="POST">
+                                <h2>CHECKOUT</h2>
+                                <div class="xo">
+                                    <span><?php echo $post['title']; ?></span>
+                                    <h1><?php echo $post['price']; ?>$</h1>
+                                </div>
+                                <div class="xoa">
+                                    <div>
+                                        <span>
+                                            Subtotal
+                                        </span>
+                                        <span><?php echo $post['price']; ?>$</span>
+                                    </div>
+                                    <div>
+                                        <span>
+                                            Total Due
+                                        </span>
+                                        <span><?php echo $post['price']; ?>$</span>
+                                    </div>
+                                </div>
+                                <p style="font-size: 14px">
+                                    fill required enter your phone number and number of peoples then click on book to confirm.
+                                    book now pay on tour.
+                                </p>
+                                <input type="hidden" value="<?php echo $user->id; ?>" name="user_id">
+                                <input type="hidden" name="date" id="date">
+                                <input type="hidden" value="1" name="save-form">
+                                <input type="hidden" value="<?php echo $post['id']; ?>" name="tour_id">
+                                <div class="flex-yxz">
+                                    <div class="a03x full-w">
+                                        <label for="phone number">Phone number</label>
+                                        <input type="text" id="phone" name="phone" placeholder="E.g. 08382434" />
+                                    </div>
+                                </div>
+
+                                <div class="flex-yxz">
+                                    <div class="a03x full-w">
+                                        <label for="members">Number of people</label>
+                                        <input type="text" name="members" id="members" placeholder="Your comment" />
+                                    </div>
+                                </div>
+                                <div>
+                                </div>
+                                <div class="flex" style="flex-direction: column;">
+                                    <button type="submit" class="login-btn btn">Book</button>
+                                    <?php if (isset($_SESSION['message'])) { ?>
+                                        <span class="message <?php echo $_SESSION['message']['variant']; ?>"><?php echo $_SESSION['message']['text']; ?></span>
+                                    <?php };
+                                    unset($_SESSION['message']); ?>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php } ?>
+    </div>
+</div>

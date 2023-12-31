@@ -1,0 +1,41 @@
+<div class="diversity-page places-view">
+    <div class="page-size ytllx3">
+        <div class="full">
+            <h1>EXPLORE SOCOTRA NOW</h1>
+            <p>for exploring and finding new places on the face of socotra. book your tour now. here we can provide cheapest and comfortable tours on socotra island. book now pay later.</p>
+        </div>
+    </div>
+    <div class='page-size places-cont tours-cont'>
+        <?php foreach ($tours as $tour) {
+            $booked = in_array($tour['id'], $booked_tours);
+        ?>
+            <section>
+                <div>
+                    <h2><?php echo $tour['title']; ?></h2>
+                    <p><?php echo $tour['description']; ?></p>
+                    <span class="sup32">
+                        JUST IN <?php echo $tour['price']; ?>$
+                        <p class="xk3"><?php echo $tour['members']; ?></p>
+                    </span>
+                    <br>
+                    <a class="btn <?php echo $booked == 1 ? "white-bg" : "orange-bg" ?> black-color" href="/?p=book-tour&id=<?php echo $tour['id']; ?>">
+                        <?php
+                        echo $booked == 1 ? "YOU ALREADY BOOKED THIS TOUR CHECK OUT" :
+                            "BOOK NOW IN JUST" . $tour['price'] . "$";
+                        ?>
+                    </a>
+                    <br>
+                    <br>
+                </div>
+                <div class="images">
+                    <img src="<?php echo $tour['image']; ?>" alt="" />
+                </div>
+            </section>
+        <?php
+        }
+        ?>
+    </div>
+</div>
+<div class="page-size" style="margin:auto">
+    <?php include_once(ROOT_PATH . "/components/links-view.phtml"); ?>
+</div>

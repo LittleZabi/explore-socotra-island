@@ -406,10 +406,26 @@
   margin-left: 29px;
 }
 
-.map .socotra-map {
-  width: 100%;
-  height: 517px;
+.yyi3 {
+  display: flex;
+  display: flex;
+  align-items: stretch;
+  flex-direction: row;
+  height: 550px;
+}
+.yyi3 .socotra-map {
+  width: 30%;
+  height: 100%;
   border: none;
+}
+.yyi3 div {
+  width: 70%;
+  height: 100%;
+}
+.yyi3 video {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
 }
 
 .places-view .places-cont section {
@@ -425,13 +441,13 @@
   text-transform: uppercase;
 }
 .places-view .places-cont section p {
-  width: 623px;
+  width: 99%;
   font-size: 22px;
   line-height: 1.5;
   margin-top: 40px;
 }
 .places-view .places-cont section div {
-  min-width: 20%;
+  width: 42%;
 }
 .places-view .places-cont section span {
   letter-spacing: 1px;
@@ -445,10 +461,11 @@
   flex-wrap: wrap;
   margin: 10px;
   justify-content: flex-end;
+  width: 50%;
 }
 .places-view .places-cont section .images img {
-  width: 250px;
-  height: 250px;
+  width: 219px;
+  height: 215px;
   object-fit: cover;
   margin: 5px;
   border-radius: 19px;
@@ -458,8 +475,68 @@
 .places-view .places-cont section .images img:hover {
   border-color: #ffffff;
 }
+.places-view .places-cont.tours-cont section {
+  padding: 35px 0;
+  justify-content: space-between;
+}
+.places-view .places-cont.tours-cont section div {
+  width: 49%;
+  padding: 0 30px;
+}
+.places-view .places-cont.tours-cont section .images {
+  padding: 0;
+  width: 46%;
+}
+.places-view .places-cont.tours-cont section .images img {
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+}
+.places-view .places-cont.tours-cont section span.sup32 {
+  font-size: 40px;
+  color: #ff8c00;
+}
+.places-view .places-cont.tours-cont section p.xk3 {
+  margin: 0;
+}
+
+.orange-bg {
+  background: #ff8c00;
+  border-color: #ffe37b;
+}
 
 @media (max-width: 992px) {
+  .yyi3 {
+    flex-direction: column-reverse;
+    flex-wrap: nowrap;
+    align-items: center;
+    height: max-content;
+  }
+  .yyi3 .socotra-map, .yyi3 div {
+    width: 90%;
+  }
+  .yyi3 .socotra-map {
+    height: 400px;
+  }
+  .yyi3 div {
+    height: 500px;
+  }
+  .places-view .places-cont section, .places-view .places-cont.tours-cont section {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .places-view .places-cont section div, .places-view .places-cont.tours-cont section div {
+    width: 98%;
+  }
+  .places-view .places-cont section .images, .places-view .places-cont.tours-cont section .images {
+    width: 98%;
+    justify-content: center;
+  }
+  .places-view .places-cont.tours-cont section div {
+    padding: 20px !important;
+    width: 90% !important;
+  }
   .text-wrapper .text-wrap {
     max-width: 40%;
   }
@@ -518,6 +595,29 @@
   }
 }
 @media (max-width: 620px) {
+  .places-view .places-cont section span {
+    font-size: 14px;
+  }
+  .places-view .places-cont section h2 {
+    font-size: 45px;
+  }
+  .places-view .places-cont section p {
+    font-size: 18px;
+    margin-top: 30px;
+  }
+  .places-view .places-cont section .images img {
+    width: 100%;
+    height: auto;
+  }
+  .places-view .places-cont.tours-cont section span.sup32 {
+    font-size: 30px;
+  }
+  .places-view .places-cont.tours-cont section span.sup32 p {
+    font-size: 16px;
+  }
+  .places-view .places-cont.tours-cont section a.btn.orange-bg {
+    padding: 14px 19px;
+  }
   .diversity-page {
     padding: 10px 0px;
   }
@@ -1439,7 +1539,7 @@ header.bg .header-weather .header-temp {
   font-size: 18px;
 }
 header .logo {
-  margin-left: 18px;
+  margin-left: 0px;
 }
 header .logo img {
   width: 150px;
@@ -1495,8 +1595,8 @@ header nav .last-li a {
   width: max-content;
 }
 header nav .last-li img {
-  width: 50px;
-  height: 50px;
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
   object-fit: cover;
 }
@@ -1508,8 +1608,8 @@ header nav ul li {
   list-style: none;
 }
 header nav ul a {
-  margin: 0;
-  padding: 8px 12px;
+  margin: 0 2px;
+  padding: 8px 6px;
   font-weight: 500;
   font-size: 16px;
   color: white;
@@ -2250,11 +2350,164 @@ header nav ul svg {
 .admin-table-view td.image svg {
   width: 52px;
 }
-.admin-table-view td button {
+.admin-table-view td button, .admin-table-view td a {
   padding: 4px 18px !important;
 }
-.admin-table-view td button svg {
+.admin-table-view td button svg, .admin-table-view td a svg {
   width: 23px;
+}
+.admin-table-view td a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.admin-table-view td.button-x3 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.admin-table-view td.button-x3 * {
+  margin: 5px 3px;
+}
+
+.tours-view {
+  margin: auto;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  background: #14121e;
+  padding-top: 40px;
+  padding-bottom: 200px;
+  padding-left: 10px;
+}
+.tours-view .xoa table {
+  width: 100%;
+}
+.tours-view .xoa table td {
+  border-bottom: 1px solid rgb(44, 44, 44);
+  padding: 10px;
+}
+.tours-view .form {
+  padding: 13px 10px;
+}
+.tours-view .form .xo {
+  margin-top: 20px;
+}
+.tours-view .form .xoa {
+  margin-top: 20px;
+  width: 200px;
+}
+.tours-view .form .xoa div {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  margin-top: 8px;
+  padding: 5px 0;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.1490196078);
+  margin-bottom: 20px;
+}
+.tours-view svg {
+  width: 30px;
+  margin-right: 12px;
+}
+.tours-view h2 {
+  font-size: 38px;
+  display: block;
+  text-transform: uppercase;
+}
+.tours-view p {
+  display: block;
+  font-size: 24px;
+  text-transform: capitalize;
+}
+.tours-view h2, .tours-view p {
+  display: flex;
+  align-items: center;
+}
+.tours-view .date-xk3 {
+  margin-top: 8px;
+}
+.tours-view .date-xk3 h3 {
+  margin-top: 15px;
+}
+.tours-view .date-xk3 .date-xk {
+  font-size: 32px;
+  text-transform: uppercase;
+}
+.tours-view .datepicker-input {
+  display: block;
+  width: 300px;
+  height: 50px;
+  font-size: 28px;
+  text-transform: uppercase;
+  padding: 0px 15px;
+  border-radius: 5px;
+  border: none;
+}
+.tours-view .tour-left-view, .tours-view .tour-right-view {
+  padding: 20px;
+}
+.tours-view .tour-left-view {
+  width: 58%;
+}
+.tours-view .tour-left-view h1 {
+  font-size: 48px;
+}
+.tours-view .tour-left-view .desc {
+  font-size: 22px;
+  margin-top: 30px;
+}
+.tours-view .tour-left-view .dur {
+  font-size: 28px;
+}
+.tours-view .tour-left-view .list-viewx93 {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+.tours-view .tour-left-view .list-viewx93 section {
+  margin: 0 40px;
+  max-width: 210px;
+}
+.tours-view .tour-left-view .list-viewx93 section span {
+  font-size: 22px;
+}
+.tours-view .tour-left-view .list-viewx93 section ul {
+  margin: 0;
+  margin-top: 8px;
+}
+.tours-view .tour-left-view .list-viewx93 section ul li {
+  text-transform: capitalize;
+}
+.tours-view .tour-right-view {
+  width: 40%;
+  border-left: 1px solid rgb(44, 44, 44);
+}
+
+@media (max-width: 992px) {
+  .tours-view {
+    flex-direction: column;
+    align-items: center;
+  }
+  .tours-view .tour-left-view, .tours-view .tour-right-view {
+    width: 88%;
+  }
+  .tours-view .tour-right-view {
+    border-left: none;
+    border-top: 1px solid rgb(44, 44, 44);
+  }
+  .tours-view .tour-left-view .list-viewx93 section {
+    margin: 10px 13px;
+  }
+}
+@media (max-width: 620px) {
+  .tours-view .datepicker-input {
+    width: 87%;
+  }
+  #top-view .top-view-wrapper .top-view-text a.btn {
+    margin-top: 15px;
+  }
 }
 
 /*# sourceMappingURL=main.css.map */

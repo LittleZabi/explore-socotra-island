@@ -1,3 +1,8 @@
+const toggleDatePicker = (self) => {
+  const x = document.querySelector("#date-plc");
+  document.querySelector("#date").value = self.value;
+  x.innerHTML = self.value.replaceAll("-", "/");
+};
 const deleteItem = (id, table) => {
   const c = confirm("You are realy want to delete this item");
   if (c) {
@@ -135,7 +140,12 @@ const signIn = async () => {
       } else if (res.id) {
         Cookies.set("user", JSON.stringify(res));
         createAlert("alert-text", "Succesfully logged!", "success");
-        window.location.href = "/";
+        let r = window.location.href;
+        let uri = new URLSearchParams(r);
+        if (uri.get("r")) {
+           window.location.href = `/?p=${uri.get("r")}${uri.get('id') ? "&id=" + uri.get('id') : ''}`;
+        }
+        else window.location.href = "/";
       }
     })
     .catch((e) => createAlert("alert-text", "Error: " + e.message, "danger"));
@@ -146,7 +156,6 @@ const postSignUp = async (data) => {
   for (let item in data) {
     if (data[item]) form.append(item, data[item]);
   }
-  console.log(form);
   await fetch("/api/set-data.php", {
     method: "POST",
     body: form,
@@ -221,15 +230,6 @@ const createAlert = (id, message, variant, time = 5000) => {
 };
 const handleImage = (element, multiple = 0) => {
   multiple = 1;
-  // if (multiple) {
-  // for(let image of element.files){
-
-  // console.log(image)
-  // }
-  // element.files.forEach((e) => {
-  //   console.log(e);
-  // });
-  // } else {
   if (element.files && element.files[0]) {
     let files = [];
     if (multiple) {
@@ -320,7 +320,6 @@ const lazyLoad = (element) => {
 };
 function determineWeatherConditions(conditionaly) {
   let temperature = 0;
-  let humidity = 0;
   let windSpeed = 0;
   if (conditionaly) {
     temperature = Number(conditionaly.temp).toFixed(0);
@@ -425,7 +424,6 @@ const setupWeatherDays = () => {
 };
 //setup hourly weather
 const setupWeatherHourly = (startIndex) => {
-  console.log("index: ", startIndex);
   const time = weather.hourly.time.slice(startIndex, startIndex + 24);
   const temp = weather.hourly.temperature_2m.slice(startIndex, startIndex + 24);
   const hum = weather.hourly.relative_humidity_2m.slice(
@@ -467,8 +465,8 @@ const getWeather = async () => {
   if (sessionStorage.getItem("weather")) {
     weather = JSON.parse(sessionStorage.getItem("weather"));
   } else {
-    // const url = "https://api.open-meteo.com/v1/forecast?latitude=12.6445&longitude=53.9601&current=temperature_2m,wind_speed_10m&hourly=temperature_2m,relative_humidity_2m,wind_speed_10m";
-    const url = "/static/js/test-weather.json";
+    const url = "https://api.open-meteo.com/v1/forecast?latitude=12.6445&longitude=53.9601&current=temperature_2m,wind_speed_10m&hourly=temperature_2m,relative_humidity_2m,wind_speed_10m";
+   //const url = "/static/js/test-weather.json";
     await fetch(url, { method: "GET" })
       .then((res) => res.json())
       .then((res) => {
